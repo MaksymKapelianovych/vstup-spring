@@ -1,0 +1,16 @@
+package ua.vstup.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import ua.vstup.entity.EntrantEntity;
+import ua.vstup.entity.RoleEntity;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface EntrantRepository extends JpaRepository<EntrantEntity, Integer> {
+    Optional<EntrantEntity> findByEmail(String email);
+
+    List<EntrantEntity> findAllByRole(RoleEntity roleEntity);
+
+    boolean updateActiveById(Integer id, boolean active);
+}

@@ -1,7 +1,5 @@
 package ua.vstup.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,23 +10,29 @@ import javax.validation.constraints.NotNull;
 public class Request {
     private Integer id;
 
-    @NotNull(message = "request.entrantId.null.exception.message")
-    private Integer entrantId;
+    @NotNull(message = "requestInfo.entrantInfo.null.exception.message")
+    private Entrant entrant;
 
-    @NotNull(message = "request.facultyId.null.exception.message")
-    private Integer facultyId;
+    @NotNull(message = "requestInfo.faculty.null.exception.message")
+    private Faculty faculty;
 
-    @NotNull(message = "request.firstSubjectId.null.exception.message")
-    private Integer firstSubjectId;
+    @NotNull(message = "requestInfo.firstSubject.null.exception.message")
+    private Subject firstSubject;
 
-    @NotNull(message = "request.secondSubjectId.null.exception.message")
-    private Integer secondSubjectId;
+    @NotNull(message = "requestInfo.secondSubject.null.exception.message")
+    private Subject secondSubject;
 
-    @NotNull(message = "request.thirdSubjectId.null.exception.message")
-    private Integer thirdSubjectId;
+    @NotNull(message = "requestInfo.thirdSubject.null.exception.message")
+    private Subject thirdSubject;
 
-    private Integer statementId;
+    private Statement statement;
     private Integer priority;
     private State state;
+
+    public Integer getRate() {
+        return getFirstSubject().getRate() +
+                getSecondSubject().getRate() +
+                getThirdSubject().getRate();
+    }
 
 }

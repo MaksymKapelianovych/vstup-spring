@@ -1,7 +1,5 @@
 package ua.vstup.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +19,14 @@ public class Entrant {
     @NotNull(message = "entrant.password.null.exception.message")
     private String password;
 
-    private Integer schoolId;
+    private School school;
     private Role role;
-    private Integer requirementId;
-    private Boolean active;
+    private Requirement requirementInfo;
+
+    private boolean active;
+    private boolean passed;
+
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
 }

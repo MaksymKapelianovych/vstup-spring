@@ -4,22 +4,33 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.List;
 
 @Getter
 @Setter
 public class Requirement {
     private Integer id;
 
-    @NotNull(message = "requirement.firstSubjectId.null.exception.message")
-    private Integer firstSubjectId;
+    @NotNull(message = "requirementInfo.firstSubject.null.exception.message")
+    private Subject firstSubject;
 
-    @NotNull(message = "requirement.secondSubjectId.null.exception.message")
-    private Integer secondSubjectId;
+    @NotNull(message = "requirementInfo.secondSubject.null.exception.message")
+    private Subject secondSubject;
 
-    @NotNull(message = "requirement.thirdSubjectId.null.exception.message")
-    private Integer thirdSubjectId;
+    @NotNull(message = "requirementInfo.thirdSubject.null.exception.message")
+    private Subject thirdSubject;
 
-    private Integer fourthSubjectId;
-    private Integer fifthSubjectId;
+    private Subject fourthSubject;
+    private Subject fifthSubject;
+
+    public List<Subject> getSubjectList() { return Arrays.asList(firstSubject, secondSubject, thirdSubject, fourthSubject, fifthSubject);}
+
+    public Subject getSubjectBySubjectName(SubjectName subjectName){
+        return getSubjectList().stream()
+                .filter(subject -> subject.getName().equals(subjectName))
+                .findFirst()
+                .orElse(null);
+    }
 
 }

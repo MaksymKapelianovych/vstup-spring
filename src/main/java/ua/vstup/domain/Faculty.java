@@ -1,7 +1,5 @@
 package ua.vstup.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,8 +26,8 @@ public class Faculty {
     @NotNull(message = "faculty.maxPlace.exception.message")
     private Integer maxPlace;
 
-    @NotNull(message = "faculty.requirementId.null.exception.message")
-    private Integer requirementId;
+    @NotNull(message = "faculty.requirementInfo.null.exception.message")
+    private Requirement requirementInfo;
 
     private Boolean active;
 }

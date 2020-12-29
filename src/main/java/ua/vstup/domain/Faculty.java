@@ -27,7 +27,7 @@ public class Faculty {
     private Integer maxPlace;
 
     @NotNull(message = "faculty.requirementInfo.null.exception.message")
-    private Requirement requirementInfo;
+    private Requirement requirement;
 
     private Boolean active;
 }

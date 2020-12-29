@@ -21,7 +21,7 @@ public class Entrant {
 
     private School school;
     private Role role;
-    private Requirement requirementInfo;
+    private Requirement requirement;
 
     private boolean active;
     private boolean passed;

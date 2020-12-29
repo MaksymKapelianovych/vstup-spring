@@ -41,7 +41,7 @@ public class RequestEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state", nullable = false)
-    private StateEntity stateEntity;
+    private RequestStateEntity requestStateEntity;
 
 
     @Column(name = "priority", nullable = false, length = 1)

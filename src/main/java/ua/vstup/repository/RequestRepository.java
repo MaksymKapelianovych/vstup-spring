@@ -2,7 +2,7 @@ package ua.vstup.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.vstup.entity.RequestEntity;
-import ua.vstup.entity.StateEntity;
+import ua.vstup.entity.RequestStateEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,7 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
 
     List<RequestEntity> findAllByStatementId(Integer id);
 
-    boolean updateStateById(Integer id, StateEntity state);
+    boolean updateStateById(Integer id, RequestStateEntity state);
 
     Optional<RequestEntity> findByEntrantIdAndFacultyId(Integer entrantId, Integer facultyId);
 }

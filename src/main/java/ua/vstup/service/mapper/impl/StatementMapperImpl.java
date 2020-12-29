@@ -1,9 +1,11 @@
 package ua.vstup.service.mapper.impl;
 
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Statement;
 import ua.vstup.entity.StatementEntity;
 import ua.vstup.service.mapper.StatementMapper;
 
+@Component
 public class StatementMapperImpl implements StatementMapper {
     @Override
     public Statement mapToDomain(StatementEntity entity) {

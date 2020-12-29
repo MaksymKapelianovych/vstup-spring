@@ -1,11 +1,13 @@
 package ua.vstup.service.mapper.impl;
 
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Subject;
 import ua.vstup.domain.SubjectName;
 import ua.vstup.entity.SubjectEntity;
 import ua.vstup.entity.SubjectNameEntity;
 import ua.vstup.service.mapper.SubjectMapper;
 
+@Component
 public class SubjectMapperImpl implements SubjectMapper {
     @Override
     public Subject mapToDomain(SubjectEntity entity) {

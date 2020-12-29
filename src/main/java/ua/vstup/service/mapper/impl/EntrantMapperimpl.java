@@ -1,6 +1,7 @@
 package ua.vstup.service.mapper.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Entrant;
 import ua.vstup.domain.Role;
 import ua.vstup.entity.EntrantEntity;
@@ -9,6 +10,7 @@ import ua.vstup.service.mapper.EntrantMapper;
 import ua.vstup.service.mapper.RequirementMapper;
 import ua.vstup.service.mapper.SchoolMapper;
 
+@Component
 public class EntrantMapperimpl implements EntrantMapper {
     @Autowired
     private RequirementMapper requirementMapper;

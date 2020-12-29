@@ -1,11 +1,13 @@
 package ua.vstup.service.mapper.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Requirement;
 import ua.vstup.entity.RequirementEntity;
 import ua.vstup.service.mapper.RequirementMapper;
 import ua.vstup.service.mapper.SubjectMapper;
 
+@Component
 public class RequirementMapperImpl implements RequirementMapper {
     @Autowired
     private SubjectMapper subjectMapper;

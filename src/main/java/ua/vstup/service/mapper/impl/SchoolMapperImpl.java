@@ -1,11 +1,13 @@
 package ua.vstup.service.mapper.impl;
 
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Region;
 import ua.vstup.domain.School;
 import ua.vstup.entity.RegionEntity;
 import ua.vstup.entity.SchoolEntity;
 import ua.vstup.service.mapper.SchoolMapper;
 
+@Component
 public class SchoolMapperImpl implements SchoolMapper {
     @Override
     public School mapToDomain(SchoolEntity entity) {

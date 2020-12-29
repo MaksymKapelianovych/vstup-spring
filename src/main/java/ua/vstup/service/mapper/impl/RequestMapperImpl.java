@@ -1,12 +1,14 @@
 package ua.vstup.service.mapper.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.vstup.domain.Request;
 import ua.vstup.domain.State;
 import ua.vstup.entity.RequestEntity;
 import ua.vstup.entity.RequestStateEntity;
 import ua.vstup.service.mapper.*;
 
+@Component
 public class RequestMapperImpl implements RequestMapper {
     @Autowired
     private EntrantMapper entrantMapper;

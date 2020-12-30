@@ -1,6 +1,6 @@
 package ua.vstup.domain;
 
-public enum State {
+public enum RequestState {
     ACTIVE("Active","Активна"),
     ACCEPTED("Accepted","Прийнята"),
     DISABLED("Disabled","Відмовлено"),
@@ -12,7 +12,7 @@ public enum State {
     private String name_ua;
     private String name_en;
 
-    State(String name_en, String name_ua){
+    RequestState(String name_en, String name_ua){
         this.name_en = name_en;
         this.name_ua = name_ua;
     }

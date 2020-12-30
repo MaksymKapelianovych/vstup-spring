@@ -3,7 +3,7 @@ package ua.vstup.service.mapper.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.vstup.domain.Request;
-import ua.vstup.domain.State;
+import ua.vstup.domain.RequestState;
 import ua.vstup.entity.RequestEntity;
 import ua.vstup.entity.RequestStateEntity;
 import ua.vstup.service.mapper.*;
@@ -33,7 +33,7 @@ public class RequestMapperImpl implements RequestMapper {
         request.setThirdSubject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
         request.setStatement(statementMapper.mapToDomain(entity.getStatementEntity()));
         request.setPriority(entity.getPriority());
-        request.setState(State.valueOf(entity.getRequestStateEntity().name()));
+        request.setRequestState(RequestState.valueOf(entity.getRequestStateEntity().name()));
         return request;
     }
 
@@ -51,7 +51,7 @@ public class RequestMapperImpl implements RequestMapper {
         entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThirdSubject()));
         entity.setStatementEntity(statementMapper.mapToEntity(domain.getStatement()));
         entity.setPriority(domain.getPriority());
-        entity.setRequestStateEntity(RequestStateEntity.valueOf(domain.getState().name()));
+        entity.setRequestStateEntity(RequestStateEntity.valueOf(domain.getRequestState().name()));
         return entity;
     }
 }

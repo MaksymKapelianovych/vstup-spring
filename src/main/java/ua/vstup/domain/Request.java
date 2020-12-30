@@ -27,7 +27,7 @@ public class Request {
 
     private Statement statement;
     private Integer priority;
-    private State state;
+    private RequestState requestState;
 
     public Integer getRate() {
         return getFirstSubject().getRate() +

@@ -30,4 +30,13 @@ public class Faculty {
     private Requirement requirement;
 
     private Boolean active;
+
+    public void decreasePlace() {
+        maxPlace--;
+    }
+
+    public void decreaseBudgetPlace() {
+        maxBudgetPlace--;
+        decreasePlace();
+    }
 }

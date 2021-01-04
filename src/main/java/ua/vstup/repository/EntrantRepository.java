@@ -1,6 +1,9 @@
 package ua.vstup.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ua.vstup.entity.EntrantEntity;
 import ua.vstup.entity.RoleEntity;
 
@@ -12,5 +15,7 @@ public interface EntrantRepository extends JpaRepository<EntrantEntity, Integer>
 
     List<EntrantEntity> findAllByRole(RoleEntity roleEntity);
 
-    boolean updateActiveById(Integer id, boolean active);
+    @Modifying
+    @Query("UPDATE EntrantEntity SET active = :active WHERE id = :id")
+    boolean updateActiveById(@Param("id") Integer id, @Param("active") boolean active);
 }

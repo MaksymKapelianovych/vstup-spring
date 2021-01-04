@@ -1,6 +1,9 @@
 package ua.vstup.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ua.vstup.entity.RequestEntity;
 import ua.vstup.entity.RequestStateEntity;
 
@@ -14,7 +17,9 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
 
     List<RequestEntity> findAllByStatementId(Integer id);
 
-    boolean updateStateById(Integer id, RequestStateEntity state);
-
     Optional<RequestEntity> findByEntrantIdAndFacultyId(Integer entrantId, Integer facultyId);
+
+    @Modifying
+    @Query("UPDATE RequestEntity SET requestStateEntity = :state WHERE id = :id")
+    boolean updateStateById(@Param("id") Integer id, @Param("state") RequestStateEntity state);
 }

@@ -10,7 +10,7 @@ import ua.vstup.domain.SubjectName;
 import ua.vstup.service.FacultyService;
 
 @Controller
-@RequestMapping("admin/faculty")
+@RequestMapping("/admin/faculty")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AdminFacultyController {
     private final FacultyService facultyService;

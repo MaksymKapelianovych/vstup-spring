@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.vstup.service.StatementService;
 
 @Controller
-@RequestMapping("admin/statement")
+@RequestMapping("/admin/statement")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class StatementController {
     private final StatementService statementService;

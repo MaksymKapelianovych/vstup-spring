@@ -17,14 +17,14 @@ import ua.vstup.service.FacultyService;
 import ua.vstup.service.RequestService;
 
 @Controller
-@RequestMapping("entrant/request")
+@RequestMapping("/entrant/request")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EntrantRequestController {
     private final RequestService requestService;
     private final EntrantService entrantService;
     private final FacultyService facultyService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String get(Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Entrant entrant = entrantService.findByEmail(username);
@@ -40,12 +40,12 @@ public class EntrantRequestController {
 
         model.addAttribute("faculty", faculty);
         model.addAttribute("subjects", requestService.jointSubjects(faculty.getRequirement(), entrant.getRequirement()));
-        return "entrant/request/add";
+        return "redirect:/entrant/request";
     }
 
     @PostMapping("add")
     public String add(Request request){
         requestService.add(request);
-        return "redirect:entrant/request";
+        return "redirect:/entrant/request";
     }
 }

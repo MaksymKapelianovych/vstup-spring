@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.vstup.service.FacultyService;
 
 @Controller
-@RequestMapping("entrant/faculty")
+@RequestMapping("/entrant/faculty")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EntrantFacultyController {
     private final FacultyService facultyService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String get(Model model){
         model.addAttribute("faculties", facultyService.getAllActive());
         return "entrant/faculty/faculty";

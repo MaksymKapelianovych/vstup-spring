@@ -34,7 +34,7 @@
                 <td th:text="${request.thirdSubject.rate}"></td>
                 <td th:text="${request.requestState}"></td>
                 <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/accept/${request.id}|}" th:text="#{request.accept}"></a></td>
-                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{/admin/request/disable/${request.id}|}" th:text="#{request.disable}"></a></td>
+                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/disable/${request.id}|}" th:text="#{request.disable}"></a></td>
             </tr>
         </tbody>
     </table>

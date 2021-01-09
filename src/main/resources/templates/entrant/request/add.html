@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragment/head :: head"></head>
 <body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: entrant-ul"></ul>
+<main>
 
+    <form class="input-form" th:action="@{|/entrant/request/add/${faculty.id}|}" method="post">
+        <div class="subjects-group">
+            <label th:text="${faculty.name_ua}"></label>
+
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="firstSubject"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="secondSubject"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="thirdSubject"/>
+            </div>
+            <div>
+                <datalist id="subjectNames">
+                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:label="${subject.name.name() + subject.rate}"></option>
+                </datalist>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-outline-primary" type="submit" th:text="#{add.request}"></button>
+            <a class="btn btn-success" href="/entrant/request" th:text="#{back}"></a>
+        </div>
+    </form>
+</main>
+<script>
+    const inputs = Array.from(document.querySelectorAll(".input_subject"))
+    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
+        inputs.forEach((i) => {
+            if(input !== i) {
+                if (input.value === i.value) {
+                    input.value = ""
+                }
+            }
+        })
+    }))
+</script>
 </body>
 </html>

@@ -78,7 +78,7 @@ public class EntrantServiceImpl implements EntrantService {
         EntrantEntity userEntity = entrantRepository.findByEmail(email).
                 orElseThrow(() -> new IncorrectDataException("user.does.not.exists"));
         if(!userEntity.getActive()){
-            throw new IncorrectDataException("ENtrant is blocked");
+            throw new IncorrectDataException("Entrant is blocked");
         }
 
         if (password.equals(userEntity.getPassword())) {

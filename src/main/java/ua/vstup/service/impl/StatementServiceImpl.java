@@ -79,11 +79,7 @@ public class StatementServiceImpl implements StatementService {
             facultyList.forEach(faculty -> processByPriority(requestList, finalI, faculty));
         }
 
-        requestList.forEach(request ->
-                requestRepository.updateStateById(
-                        request.getId(),
-                        RequestStateEntity.valueOf(request.getRequestState().name())
-                ));
+        requestList.forEach(request -> requestRepository.save(requestMapper.mapToEntity(request)));
 
     }
 

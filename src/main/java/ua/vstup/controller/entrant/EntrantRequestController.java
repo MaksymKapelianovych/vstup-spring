@@ -5,13 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ua.vstup.domain.Entrant;
-import ua.vstup.domain.Faculty;
-import ua.vstup.domain.Request;
+import org.springframework.web.bind.annotation.*;
+import ua.vstup.controller.ControllerHelper;
+import ua.vstup.domain.*;
 import ua.vstup.service.EntrantService;
 import ua.vstup.service.FacultyService;
 import ua.vstup.service.RequestService;
@@ -35,17 +31,24 @@ public class EntrantRequestController {
     @GetMapping("add/{id}")
     public String addPage(@PathVariable Integer id, Model model){
         Faculty faculty = facultyService.get(id);
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Entrant entrant = entrantService.findByEmail(username);
+        Entrant entrant = ControllerHelper.getEntrantFromSecurityContext(entrantService);
+        requestService.checkIfRequestExists(entrant, faculty);
 
         model.addAttribute("faculty", faculty);
         model.addAttribute("subjects", requestService.jointSubjects(faculty.getRequirement(), entrant.getRequirement()));
+        model.addAttribute("request", new Request());
         return "entrant/request/add";
     }
 
-    @PostMapping("add")
-    public String add(Request request){
-        requestService.add(request);
+    @PostMapping("add/{id}")
+    public String add(@RequestParam(value = "firstSubject") Integer firstSubject,
+                      @RequestParam(value = "secondSubject") Integer secondSubject,
+                      @RequestParam(value = "thirdSubject") Integer thirdSubject,
+                      @PathVariable("id") Integer facultyId){
+
+        Entrant entrant = ControllerHelper.getEntrantFromSecurityContext(entrantService);
+
+        requestService.add(entrant, facultyId, firstSubject, secondSubject, thirdSubject);
         return "redirect:/entrant/request";
     }
 }

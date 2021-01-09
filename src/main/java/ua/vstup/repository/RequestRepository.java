@@ -17,8 +17,4 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
     List<RequestEntity> findAllByStatementEntity(StatementEntity statementEntity);
 
     Optional<RequestEntity> findByEntrantEntityAndFacultyEntity(EntrantEntity entrantEntity, FacultyEntity facultyEntity);
-
-    @Modifying
-    @Query("UPDATE RequestEntity SET requestStateEntity = :state WHERE id = :id")
-    boolean updateStateById(@Param("id") Integer id, @Param("state") RequestStateEntity state);
 }

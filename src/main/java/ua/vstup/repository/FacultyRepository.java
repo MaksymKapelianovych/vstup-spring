@@ -13,7 +13,4 @@ public interface FacultyRepository extends JpaRepository<FacultyEntity, Integer>
 
     List<FacultyEntity> findAllByActive(boolean active);
 
-    @Modifying
-    @Query("UPDATE FacultyEntity SET active = :active WHERE id = :id")
-    boolean updateActiveById(@Param("id") Integer id, @Param("active") boolean active);
 }

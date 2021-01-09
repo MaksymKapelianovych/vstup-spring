@@ -14,8 +14,4 @@ public interface EntrantRepository extends JpaRepository<EntrantEntity, Integer>
     Optional<EntrantEntity> findByEmail(String email);
 
     List<EntrantEntity> findAllByRole(RoleEntity roleEntity);
-
-    @Modifying
-    @Query("UPDATE EntrantEntity SET active = :active WHERE id = :id")
-    boolean updateActiveById(@Param("id") Integer id, @Param("active") boolean active);
 }

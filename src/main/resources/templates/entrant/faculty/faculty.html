@@ -15,14 +15,43 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="faculty : ${faculties}">
-            <td scope="row" th:text="${faculty.getName_en()}"></td>
-            <td th:text="${faculty.maxBudgetPlace}"></td>
-            <td th:text="${faculty.maxPlace}"></td>
-            <td><a th:href="@{|/entrant/request/add/${faculty.id}|}" th:text="#{add.request}"></a> </td>
-        </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='nameEn')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='nameUa')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='maxBudgetPlace')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='maxBudgetPlace')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='maxPlace')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='maxPlace')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td></td>
+            </tr>
+            <tr th:each="faculty : ${faculties}">
+                <td scope="row" th:text="${faculty.nameEn}"></td>
+                <td th:text="${faculty.maxBudgetPlace}"></td>
+                <td th:text="${faculty.maxPlace}"></td>
+                <td><a th:href="@{|/entrant/request/add/${faculty.id}|}" th:text="#{add.request}"></a> </td>
+            </tr>
         </tbody>
     </table>
 </main>
+<footer>
+    <ul class="nav nav-tabs justify-content-center" th:if="${totalPages > 0}">
+        <li class="nav-item">
+            <a th:href="@{/entrant/faculty(page=${page+(-1)}, sort=${sort}, nameBy=${nameBy})}"
+               th:text="#{back}"
+               th:class="${page > 0} ? 'btn btn-outline-primary' : ' disabled nav-link'"></a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/entrant/entrant(page=${page+1}, sort=${sort}, nameBy=${nameBy})}"
+               th:text="#{next}"
+               th:class="${totalPages - 1 > page} ? 'btn btn-outline-primary' : 'disabled nav-link'"></a>
+        </li>
+    </ul>
+</footer>
 </body>
 </html>

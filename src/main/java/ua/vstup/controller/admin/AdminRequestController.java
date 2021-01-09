@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ua.vstup.domain.RequestState;
 import ua.vstup.service.RequestService;
+import ua.vstup.utility.ParameterParser;
 
 @Controller
 @RequestMapping("/admin/request")
@@ -17,8 +19,12 @@ public class AdminRequestController {
     private final RequestService requestService;
 
     @GetMapping("")
-    public String get(Model model){
-        model.addAttribute("requests", requestService.getAll());
+    public String get(Model model, @RequestParam(value = "page", required = false) String page){
+        int totalPages = requestService.pageCount();
+        model.addAttribute("totalPages", totalPages);
+
+        model.addAttribute("page", ParameterParser.parsePageNumber(page, 0, totalPages));
+        model.addAttribute("requests", requestService.getAll(page));
         return "admin/request/request";
     }
 

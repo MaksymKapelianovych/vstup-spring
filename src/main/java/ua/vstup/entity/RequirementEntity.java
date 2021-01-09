@@ -26,12 +26,4 @@ public class RequirementEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "third_subject_id", nullable = false)
     private SubjectEntity thirdSubjectEntity;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fourth_subject_id")
-    private SubjectEntity fourthSubjectEntity;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fifth_subject_id")
-    private SubjectEntity fifthSubjectEntity;
 }

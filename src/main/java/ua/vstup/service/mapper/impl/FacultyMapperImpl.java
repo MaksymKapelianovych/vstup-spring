@@ -19,8 +19,8 @@ public class FacultyMapperImpl implements FacultyMapper {
         }
         Faculty faculty = new Faculty();
         faculty.setId(entity.getId());
-        faculty.setName_en(entity.getName_en());
-        faculty.setName_ua(entity.getName_ua());
+        faculty.setNameEn(entity.getNameEn());
+        faculty.setNameUa(entity.getNameUa());
         faculty.setMaxBudgetPlace(entity.getMaxBudgetPlace());
         faculty.setMaxPlace(entity.getMaxPlace());
         faculty.setRequirement(requirementMapper.mapToDomain(entity.getRequirementEntity()));
@@ -35,8 +35,8 @@ public class FacultyMapperImpl implements FacultyMapper {
         }
         FacultyEntity entity = new FacultyEntity();
         entity.setId(domain.getId());
-        entity.setName_en(domain.getName_en());
-        entity.setName_ua(domain.getName_ua());
+        entity.setNameEn(domain.getNameEn());
+        entity.setNameUa(domain.getNameUa());
         entity.setMaxBudgetPlace(domain.getMaxBudgetPlace());
         entity.setMaxPlace(domain.getMaxPlace());
         entity.setRequirementEntity(requirementMapper.mapToEntity(domain.getRequirement()));

@@ -11,7 +11,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col" th:text="#{faculty.name.en}"></th>
+                <th scope="col" th:text="#{faculty.name}"></th>
                 <th scope="col" th:text="#{faculty.max.budget.places}"></th>
                 <th scope="col" th:text="#{faculty.max.places}"></th>
                 <th scope="col" th:text="#{faculty.state}"></th>
@@ -20,8 +20,25 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/admin/faculty(sort='DESC', nameBy='nameEn')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/admin/faculty(sort='ASC', nameBy='nameUa')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/faculty(sort='DESC', nameBy='maxBudgetPlace')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/admin/faculty(sort='ASC', nameBy='maxBudgetPlace')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/faculty(sort='DESC', nameBy='maxPlace')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/admin/faculty(sort='ASC', nameBy='maxPlace')}"  th:text="#{sort.asc}"></a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr th:each="faculty : ${faculties}">
-                <td scope="row" th:text="${faculty.getName_en()}"></td>
+                <td scope="row" th:text="${faculty.nameEn()}"></td>
                 <td th:text="${faculty.maxBudgetPlace}"></td>
                 <td th:text="${faculty.maxPlace}"></td>
                 <td th:text="${faculty.active} ? #{active} : #{closed}"></td>
@@ -34,5 +51,19 @@
     </table>
     <a class="btn btn-outline-success" th:href="@{/admin/faculty/add}" th:text="#{add.faculty}"></a>
 </main>
+<footer>
+    <ul class="nav nav-tabs justify-content-center" th:if="${totalPages > 0}">
+        <li class="nav-item">
+            <a th:href="@{/admin/faculty(page=${page+(-1)}, sort=${sort}, nameBy=${nameBy})}"
+               th:text="#{back}"
+               th:class="${page > 0} ? 'btn btn-outline-primary' : ' disabled nav-link'"></a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/admin/entrant(page=${page+1}, sort=${sort}, nameBy=${nameBy})}"
+               th:text="#{next}"
+               th:class="${totalPages - 1 > page} ? 'btn btn-outline-primary' : 'disabled nav-link'"></a>
+        </li>
+    </ul>
+</footer>
 </body>
 </html>

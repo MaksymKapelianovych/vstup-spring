@@ -13,10 +13,10 @@ public class Faculty {
     private Integer id;
 
     @NotNull(message = "faculty.name_ua.exception.message")
-    private String name_ua;
+    private String nameUa;
 
     @NotNull(message = "faculty.name_en.exception.message")
-    private String name_en;
+    private String nameEn;
 
     @PositiveOrZero(message = "faculty.maxBudgetPlace.not.positive.exception.message")
     @NotNull(message = "faculty.maxBudgetPlace.exception.message")

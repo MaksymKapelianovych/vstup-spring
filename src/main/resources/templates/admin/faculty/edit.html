@@ -8,36 +8,36 @@
 <header th:replace="/fragment/header :: header"></header>
 <ul th:replace="/fragment/links :: admin-ul"></ul>
 <main>
-    <form class="input-form" th:action="@{/admin/faculty/edit}" method="post">
+    <form class="input-form" th:action="@{/admin/faculty/edit}" method="post" th:object="${faculty}">
+        <input type="hidden" th:field="*{id}" th:value="${faculty.id}"/>
+        <input type="hidden" th:field="*{requirement.id}" th:value="${faculty.requirement.id}"/>
+        <input type="hidden" th:field="*{requirement.firstSubject.id}" th:value="${faculty.requirement.firstSubject.id}"/>
+        <input type="hidden" th:field="*{requirement.secondSubject.id}" th:value="${faculty.requirement.secondSubject.id}"/>
+        <input type="hidden" th:field="*{requirement.thirdSubject.id}" th:value="${faculty.requirement.thirdSubject.id}"/>
         <div class="input-group">
-            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:value="${faculty.name_en}"/>
-            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:value="${faculty.name_ua}"/>
+            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:field="*{name_en}" th:value="${faculty.name_en}"/>
+            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:field="*{name_ua}" th:value="${faculty.name_ua}"/>
         </div>
         <div class="input-group">
-            <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}" th:value="${faculty.maxBudgetPlace}"/>
-            <input class="input form-control" type="text" name="maxPlace" th:placeholder="#{faculty.max.places}" th:value="${faculty.maxPlace}"/>
+            <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}" th:field="*{maxBudgetPlace}" th:value="${faculty.maxBudgetPlace}"/>
+            <input class="input form-control" type="text" name="maxPlace" th:placeholder="#{faculty.max.places}" th:field="*{maxPlace}" th:value="${faculty.maxPlace}"/>
         </div>
         <div class="subjects-group">
             <label th:text="#{subject.rate}"></label>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.firstSubject.name" th:value="${faculty.requirement.firstSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.firstSubject.rate" th:value="${faculty.requirement.firstSubject.rate}"/>
+                <input class="input_subject form-control" list="subjectNames" name="requirement.firstSubject.name" th:field="*{requirement.firstSubject.name}" th:value="${faculty.requirement.firstSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.firstSubject.rate" th:field="*{requirement.firstSubject.rate}" th:value="${faculty.requirement.firstSubject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.secondSubject.name" th:value="${faculty.requirement.secondSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.secondSubject.rate" th:value="${faculty.requirement.secondSubject.rate}"/>
+                <input class="input_subject form-control" list="subjectNames" name="requirement.secondSubject.name" th:field="*{requirement.secondSubject.name}" th:value="${faculty.requirement.secondSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.secondSubject.rate" th:field="*{requirement.secondSubject.rate}" th:value="${faculty.requirement.secondSubject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.thirdSubject.name" th:value="${faculty.requirement.thirdSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.thirdSubject.rate" th:value="${faculty.requirement.thirdSubject.rate}"/>
+                <input class="input_subject form-control" list="subjectNames" name="requirement.thirdSubject.name" th:field="*{requirement.thirdSubject.name}" th:value="${faculty.requirement.thirdSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.thirdSubject.rate" th:field="*{requirement.thirdSubject.rate}" th:value="${faculty.requirement.thirdSubject.rate}"/>
             </div>
-            <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.fourthSubject.name" th:value="${faculty.requirement.fourthSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.fourthSubject.rate" th:value="${faculty.requirement.fourthSubject.rate}"/>
-            </div>
-            <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.fifthSubject.name" th:value="${faculty.requirement.fifthSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.fifthSubject.rate" th:value="${faculty.requirement.fifthSubject.rate}"/>
+            <div>
+                <input type="checkbox" name="active" th:text="#{active}" th:field="*{active}" th:value="${faculty.active}"/>
             </div>
             <div>
                 <datalist id="subjectNames">

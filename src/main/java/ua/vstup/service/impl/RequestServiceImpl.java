@@ -3,6 +3,7 @@ package ua.vstup.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ua.vstup.domain.*;
 import ua.vstup.entity.*;
@@ -16,6 +17,8 @@ import ua.vstup.service.mapper.EntrantMapper;
 import ua.vstup.service.mapper.FacultyMapper;
 import ua.vstup.service.mapper.RequestMapper;
 import ua.vstup.service.mapper.SubjectMapper;
+import ua.vstup.service.utility.ServiceUtility;
+import ua.vstup.utility.ParameterParser;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +27,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestServiceImpl implements RequestService {
+    private static final int ITEMS_PER_PAGE = 9;
+
     private final RequestRepository requestRepository;
     private final StatementRepository statementRepository;
     private final SubjectRepository subjectRepository;
@@ -42,8 +47,9 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public List<Request> getAll() {
-        return requestRepository.findAll().stream()
+    public List<Request> getAll(String page) {
+        PageRequest pageRequest = PageRequest.of(ParameterParser.parsePageNumber(page, 0, pageCount()), ITEMS_PER_PAGE);
+        return requestRepository.findAll(pageRequest).stream()
                 .map(requestMapper::mapToDomain)
                 .collect(Collectors.toList());
     }
@@ -54,6 +60,11 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAllByStatementEntity(statementEntity).stream()
                 .map(requestMapper::mapToDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public int pageCount() {
+        return ServiceUtility.getNumberOfPage(facultyRepository.count(), ITEMS_PER_PAGE);
     }
 
     @Override

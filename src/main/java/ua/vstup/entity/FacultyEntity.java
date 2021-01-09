@@ -16,10 +16,10 @@ public class FacultyEntity {
     private Integer id;
 
     @Column(name = "name_en", nullable = false, unique = true)
-    private String name_en;
+    private String nameEn;
 
     @Column(name = "name_ua", nullable = false, unique = true)
-    private String name_ua;
+    private String nameUa;
 
     @Column(name = "max_budget_place", nullable = false)
     private Integer maxBudgetPlace;

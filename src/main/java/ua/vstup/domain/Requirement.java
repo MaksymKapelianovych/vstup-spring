@@ -21,10 +21,7 @@ public class Requirement {
     @NotNull(message = "requirementInfo.thirdSubject.null.exception.message")
     private Subject thirdSubject;
 
-    private Subject fourthSubject;
-    private Subject fifthSubject;
-
-    public List<Subject> getSubjectList() { return Arrays.asList(firstSubject, secondSubject, thirdSubject, fourthSubject, fifthSubject);}
+    public List<Subject> getSubjectList() { return Arrays.asList(firstSubject, secondSubject, thirdSubject);}
 
     public Subject getSubjectBySubjectName(SubjectName subjectName){
         return getSubjectList().stream()

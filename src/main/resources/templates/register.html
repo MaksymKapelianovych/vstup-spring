@@ -34,14 +34,6 @@
                 <input class="input_subject form-control" list="subjectNames" name="subject_name3"/>
                 <input class="input form-control" type="number" name="subject_rate3">
             </div>
-            <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name4"/>
-                <input class="input form-control" type="number" name="subject_rate4">
-            </div>
-            <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name5"/>
-                <input class="input form-control" type="number" name="subject_rate5">
-            </div>
             <div>
                 <datalist id="subjectNames">
                     <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:label="${subject_name.name()}"></option>

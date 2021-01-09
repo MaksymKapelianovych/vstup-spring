@@ -2,6 +2,8 @@ package ua.vstup.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,6 +16,8 @@ import ua.vstup.exception.IncorrectDataException;
 import ua.vstup.repository.EntrantRepository;
 import ua.vstup.service.EntrantService;
 import ua.vstup.service.mapper.EntrantMapper;
+import ua.vstup.service.utility.ServiceUtility;
+import ua.vstup.utility.ParameterParser;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +27,8 @@ import static java.util.Collections.singletonList;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EntrantServiceImpl implements EntrantService {
+    private static final int ITEMS_PER_PAGE = 3;
+
     private final EntrantRepository entrantRepository;
     private final EntrantMapper entrantMapper;
 
@@ -34,10 +40,18 @@ public class EntrantServiceImpl implements EntrantService {
     }
 
     @Override
-    public List<Entrant> getAllEntrants() {
-        return entrantRepository.findAllByRole(RoleEntity.USER).stream()
+    public List<Entrant> getAllEntrants(String page) {
+        PageRequest pageRequest = PageRequest.of(ParameterParser.parsePageNumber(page, 0, pageCount()), ITEMS_PER_PAGE);
+        return entrantRepository.findAllByRole(RoleEntity.USER, pageRequest).stream()
                 .map(entrantMapper::mapToDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public int pageCount() {
+        EntrantEntity entity = new EntrantEntity();
+        entity.setRole(RoleEntity.USER);
+        return ServiceUtility.getNumberOfPage(entrantRepository.count(Example.of(entity)), ITEMS_PER_PAGE);
     }
 
     @Override

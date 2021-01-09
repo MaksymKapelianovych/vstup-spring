@@ -21,8 +21,6 @@ public class RequirementMapperImpl implements RequirementMapper {
         requirement.setFirstSubject(subjectMapper.mapToDomain(entity.getFirstSubjectEntity()));
         requirement.setSecondSubject(subjectMapper.mapToDomain(entity.getSecondSubjectEntity()));
         requirement.setThirdSubject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
-        requirement.setFourthSubject(subjectMapper.mapToDomain(entity.getFourthSubjectEntity()));
-        requirement.setFifthSubject(subjectMapper.mapToDomain(entity.getFifthSubjectEntity()));
         return requirement;
     }
 
@@ -36,8 +34,6 @@ public class RequirementMapperImpl implements RequirementMapper {
         entity.setFirstSubjectEntity(subjectMapper.mapToEntity(domain.getFirstSubject()));
         entity.setSecondSubjectEntity(subjectMapper.mapToEntity(domain.getSecondSubject()));
         entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThirdSubject()));
-        entity.setFourthSubjectEntity(subjectMapper.mapToEntity(domain.getFourthSubject()));
-        entity.setFifthSubjectEntity(subjectMapper.mapToEntity(domain.getFifthSubject()));
         return entity;
     }
 }

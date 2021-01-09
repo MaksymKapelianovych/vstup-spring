@@ -9,7 +9,8 @@ import java.util.List;
 public interface EntrantService extends AuthenticationProvider {
     void register(Entrant entrant);
 
-    List<Entrant> getAllEntrants();
+    List<Entrant> getAllEntrants(String page);
+    int pageCount();
 
     void disable(Integer id);
     void enable(Integer id);

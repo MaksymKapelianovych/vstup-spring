@@ -7,8 +7,10 @@ import java.util.List;
 public interface RequestService {
     List<Request> getAllByEntrant(Entrant entrant);
 
-    List<Request> getAll();
+    List<Request> getAll(String page);
     List<Request> getAllByStatementId(Integer id);
+
+    int pageCount();
 
     void updateStateById(Integer id, RequestState requestState);
 

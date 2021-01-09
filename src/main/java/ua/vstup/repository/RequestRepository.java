@@ -12,8 +12,6 @@ import java.util.Optional;
 public interface RequestRepository extends JpaRepository<RequestEntity, Integer> {
     List<RequestEntity> findAllByEntrantEntity(EntrantEntity entrantEntity);
 
-    List<RequestEntity> findAll();
-
     List<RequestEntity> findAllByStatementEntity(StatementEntity statementEntity);
 
     Optional<RequestEntity> findByEntrantEntityAndFacultyEntity(EntrantEntity entrantEntity, FacultyEntity facultyEntity);

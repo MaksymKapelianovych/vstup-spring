@@ -21,7 +21,7 @@ public class AuthenticateController {
     private final SchoolService schoolService;
     private final EntrantService entrantService;
 
-    @GetMapping("/login-page")
+    @GetMapping("/")
     public String loginPage(){
         return "login";
     }

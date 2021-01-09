@@ -21,15 +21,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/static/**", "/login-page", "/register-page").permitAll()
-                .antMatchers("/entrant").hasRole(Role.USER.name())
-                .antMatchers("/admin").hasRole(Role.ADMIN.name())
+                .antMatchers("/", "/static/**", "/login", "/register-page").permitAll()
+                .antMatchers("/profile").authenticated()
+                .antMatchers("/entrant/**").hasAnyAuthority(Role.USER.name())
+                .antMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.name())
 
                 .and()
                 .formLogin()
 //                .defaultSuccessUrl("/profile")
-                .loginPage("/login-page")
-                .successForwardUrl("/profile").permitAll()
+                .loginPage("/")
+                .loginProcessingUrl("/login")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/profile").permitAll()
 
                 .and()
                 .logout()

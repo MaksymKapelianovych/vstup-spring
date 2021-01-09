@@ -40,7 +40,7 @@ public class EntrantRequestController {
 
         model.addAttribute("faculty", faculty);
         model.addAttribute("subjects", requestService.jointSubjects(faculty.getRequirement(), entrant.getRequirement()));
-        return "redirect:/entrant/request";
+        return "entrant/request/add";
     }
 
     @PostMapping("add")

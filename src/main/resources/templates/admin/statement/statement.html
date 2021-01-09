@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragment/head :: head"></head>
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+    <div>
+        <a th:if="${statement == null}" class="btn btn-outline-primary" th:href="@{/admin/statement/add}" th:text="#{add.statement}"></a>
+        <a th:unless="${statement == null}" class="btn btn-outline-primary" th:href="@{/admin/statement/finalize}" th:text="#{finalize.statement}"></a>
+    </div>
+</main>
+</body>
+</html>

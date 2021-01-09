@@ -1,0 +1,14 @@
+.input-form{
+    max-width: 40%;
+    margin: 0 auto;
+}
+.input-group{
+    margin-bottom: 0.5em;
+}
+
+.subjects-group label{
+    font-size: 1.1rem;
+    display: block;
+    margin-left: -0.7em;
+    margin-bottom: .5em;
+}

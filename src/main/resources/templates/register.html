@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head">
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<main>
+    <form class="input-form" th:action="@{/register}" method="post">
+        <div class="main-info">
+            <div class="input-group">
+                <input class="input form-control" type="email" name="email" th:placeholder="#{input.email}"/>
+                <input class="input form-control" type="password" name="password" th:placeholder="#{input.password}"/>
+            </div>
+            <div class="input-group">
+                <input class="input form-control" type="text" name="name" th:placeholder="#{input.name}"/>
+                <input class="input form-control" list="schools" name="school_id" th:placeholder="#{choose.school}"/>
+                <datalist id="schools">
+                    <option th:each="school : ${schools}" th:value="${school.id}" th:label="${school.getName_en() + school.getCity_en() + school.getRegion().name()}"></option>
+                </datalist>
+            </div>
+        </div>
+        <div class="subjects-group">
+            <label th:text="#{subject.rate}"></label>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name1"/>
+                <input class="input form-control" type="number" name="subject_rate1">
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name2"/>
+                <input class="input form-control" type="number" name="subject_rate2">
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name3"/>
+                <input class="input form-control" type="number" name="subject_rate3">
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name4"/>
+                <input class="input form-control" type="number" name="subject_rate4">
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name5"/>
+                <input class="input form-control" type="number" name="subject_rate5">
+            </div>
+            <div>
+                <datalist id="subjectNames">
+                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:label="${subject_name.name()}"></option>
+                </datalist>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-outline-primary" type="submit" th:text="#{register.button}"></button>
+                <a class="btn btn-success" th:href="@{/login-page}" th:text="#{back}"></a>
+            </div>
+
+        </div>
+    </form>
+</main>
+<script>
+    const inputs = Array.from(document.querySelectorAll(".input_subject"))
+    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
+        inputs.forEach((i) => {
+            if(input !== i) {
+                if (input.value === i.value) {
+                    input.value = ""
+                }
+            }
+        })
+    }))
+</script>
+</body>
+</html>

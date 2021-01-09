@@ -1,0 +1,40 @@
+*,:before,:after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background: #cecece;
+}
+
+header a{
+    color: #444444;
+    font-size: 1rem;
+    transition: .25s;
+    display: inline-block;
+    padding-bottom: .15em;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+}
+
+header a:not(:last-child){
+    margin-right: 1em;
+}
+
+header a:hover{
+    color: #222222;
+    border-color: #222222;
+}
+
+main{
+    padding: 0 1em;
+    margin-top: 10px;
+}

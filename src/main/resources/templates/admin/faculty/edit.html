@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+    <form class="input-form" th:action="@{/admin/faculty/edit}" method="post">
+        <div class="input-group">
+            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:value="${faculty.name_en}"/>
+            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:value="${faculty.name_ua}"/>
+        </div>
+        <div class="input-group">
+            <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}" th:value="${faculty.maxBudgetPlace}"/>
+            <input class="input form-control" type="text" name="maxPlace" th:placeholder="#{faculty.max.places}" th:value="${faculty.maxPlace}"/>
+        </div>
+        <div class="subjects-group">
+            <label th:text="#{subject.rate}"></label>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="requirement.firstSubject.name" th:value="${faculty.requirement.firstSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.firstSubject.rate" th:value="${faculty.requirement.firstSubject.rate}"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="requirement.secondSubject.name" th:value="${faculty.requirement.secondSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.secondSubject.rate" th:value="${faculty.requirement.secondSubject.rate}"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="requirement.thirdSubject.name" th:value="${faculty.requirement.thirdSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.thirdSubject.rate" th:value="${faculty.requirement.thirdSubject.rate}"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="requirement.fourthSubject.name" th:value="${faculty.requirement.fourthSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.fourthSubject.rate" th:value="${faculty.requirement.fourthSubject.rate}"/>
+            </div>
+            <div class="input-group">
+                <input class="input_subject form-control" list="subjectNames" name="requirement.fifthSubject.name" th:value="${faculty.requirement.fifthSubject.name}"/>
+                <input class="input form-control" type="number" name="requirement.fifthSubject.rate" th:value="${faculty.requirement.fifthSubject.rate}"/>
+            </div>
+            <div>
+                <datalist id="subjectNames">
+                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.name()}"></option>
+                </datalist>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-outline-primary" type="submit" th:text="#{register.button}"></button>
+            <a class="btn btn-outline-success" th:href="@{/admin/faculty}" th:text="#{back}"></a>
+        </div>
+    </form>
+</main>
+<script>
+    const inputs = Array.from(document.querySelectorAll(".input_subject"))
+    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
+        inputs.forEach((i) => {
+            if(input !== i) {
+                if (input.value === i.value) {
+                    input.value = ""
+                }
+            }
+        })
+    }))
+</script>
+</body>
+</html>

@@ -2,17 +2,19 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
-<head>
-    <title><fmt:message key="login.title"/> </title>
-</head>
+<head th:replace="/fragment/head :: head"></head>
 <body>
-<form class="login-form" th:action="@{/login}" method="post">
-    <div>
-        <input class="input" type="email" name="email" th:placeholder="#{input.email}"/>
-        <input class="input" type="password" name="password" th:placeholder="#{input.password}"/>
-        <button type="submit" th:text="#{login.button}"></button>
-        <a th:href="@{/register-page}" th:text="#{register.button}"></a>
-    </div>
-</form>
+<header th:replace="/fragment/header :: header"></header>
+<main>
+    <form class="login-form" th:action="@{/login}" method="post">
+        <label th:text="#{login.title}"></label>
+        <input class="input form-control" type="email" name="email" th:placeholder="#{input.email}"/>
+        <input class="input form-control" type="password" name="password" th:placeholder="#{input.password}"/>
+        <div class="buttons">
+            <button class="btn btn-outline-primary" type="submit" th:text="#{login.button}"></button>
+            <a class="btn btn-success" th:href="@{/register-page}" th:text="#{register.button}"></a>
+        </div>
+    </form>
+</main>
 </body>
 </html>

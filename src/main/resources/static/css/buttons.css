@@ -1,0 +1,13 @@
+
+.buttons{
+    display: flex;
+    --button-gap: 1em;
+}
+
+.buttons .btn{
+    width: calc(50% - var(--button-gap)/2);
+}
+
+.buttons .btn:first-child{
+    margin-right: var(--button-gap);
+}

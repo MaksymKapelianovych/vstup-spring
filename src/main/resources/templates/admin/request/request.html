@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{entrant.name}"></th>
+            <th scope="col" th:text="#{faculty.name}"></th>
+            <th scope="col" th:text="#{subject.name}"></th>
+            <th scope="col" th:text="#{subject.rate}"></th>
+            <th scope="col" th:text="#{subject.name}"></th>
+            <th scope="col" th:text="#{subject.rate}"></th>
+            <th scope="col" th:text="#{subject.name}"></th>
+            <th scope="col" th:text="#{subject.rate}"></th>
+            <th scope="col" th:text="#{request.state}"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="request : ${requests}">
+                <td scope="row" th:text="${request.entrant.name}"></td>
+                <td th:text="${request.faculty.name_en}"></td>
+                <td th:text="${request.firstSubject.name}"></td>
+                <td th:text="${request.firstSubject.rate}"></td>
+                <td th:text="${request.secondSubject.name}"></td>
+                <td th:text="${request.secondSubject.rate}"></td>
+                <td th:text="${request.thirdSubject.name}"></td>
+                <td th:text="${request.thirdSubject.rate}"></td>
+                <td th:text="${request.requestState}"></td>
+                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/accept/${request.id}|}" th:text="#{request.accept}"></a></td>
+                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{/admin/request/disable/${request.id}|}" th:text="#{request.disable}"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

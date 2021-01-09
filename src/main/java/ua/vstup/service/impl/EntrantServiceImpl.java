@@ -1,5 +1,6 @@
 package ua.vstup.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +21,10 @@ import java.util.stream.Collectors;
 import static java.util.Collections.singletonList;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EntrantServiceImpl implements EntrantService {
-    @Autowired
-    private EntrantRepository entrantRepository;
-    @Autowired
-    private EntrantMapper entrantMapper;
+    private final EntrantRepository entrantRepository;
+    private final EntrantMapper entrantMapper;
 
     @Override
     public void register(Entrant entrant) {

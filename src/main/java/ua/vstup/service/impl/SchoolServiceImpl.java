@@ -1,5 +1,6 @@
 package ua.vstup.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.vstup.domain.School;
@@ -12,11 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SchoolServiceImpl implements SchoolService {
-    @Autowired
-    private SchoolRepository schoolRepository;
-    @Autowired
-    private SchoolMapper schoolMapper;
+    private final SchoolRepository schoolRepository;
+    private final SchoolMapper schoolMapper;
 
     @Override
     public void add(School school) {

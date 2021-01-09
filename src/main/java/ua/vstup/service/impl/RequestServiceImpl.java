@@ -1,5 +1,6 @@
 package ua.vstup.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -21,23 +22,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestServiceImpl implements RequestService {
-    @Autowired
-    private RequestRepository requestRepository;
-    @Autowired
-    private StatementRepository statementRepository;
-    @Autowired
-    private SubjectRepository subjectRepository;
-    @Autowired
-    private FacultyRepository facultyRepository;
-    @Autowired
-    private RequestMapper requestMapper;
-    @Autowired
-    private EntrantMapper entrantMapper;
-    @Autowired
-    private FacultyMapper facultyMapper;
-    @Autowired
-    private SubjectMapper subjectMapper;
+    private final RequestRepository requestRepository;
+    private final StatementRepository statementRepository;
+    private final SubjectRepository subjectRepository;
+    private final FacultyRepository facultyRepository;
+
+    private final RequestMapper requestMapper;
+    private final EntrantMapper entrantMapper;
+    private final FacultyMapper facultyMapper;
+    private final SubjectMapper subjectMapper;
 
     @Override
     public List<Request> getAllByEntrant(Entrant entrant) {

@@ -1,5 +1,6 @@
 package ua.vstup.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.vstup.domain.Faculty;
@@ -22,19 +23,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class StatementServiceImpl implements StatementService {
-    @Autowired
-    private StatementRepository statementRepository;
-    @Autowired
-    private FacultyRepository facultyRepository;
-    @Autowired
-    private RequestRepository requestRepository;
-    @Autowired
-    private StatementMapper statementMapper;
-    @Autowired
-    private FacultyMapper facultyMapper;
-    @Autowired
-    private RequestMapper requestMapper;
+    private final StatementRepository statementRepository;
+    private final FacultyRepository facultyRepository;
+    private final RequestRepository requestRepository;
+
+    private final StatementMapper statementMapper;
+    private final FacultyMapper facultyMapper;
+    private final RequestMapper requestMapper;
 
     @Override
     public void createStatement() {

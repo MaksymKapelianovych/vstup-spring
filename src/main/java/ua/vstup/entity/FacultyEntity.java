@@ -12,23 +12,23 @@ import javax.persistence.*;
 public class FacultyEntity {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name_en", nullable = false)
+    @Column(name = "name_en", nullable = false, unique = true)
     private String name_en;
 
-    @Column(name = "name_ua", nullable = false)
+    @Column(name = "name_ua", nullable = false, unique = true)
     private String name_ua;
 
-    @Column(name = "maxBudgetPlace", nullable = false)
+    @Column(name = "max_budget_place", nullable = false)
     private Integer maxBudgetPlace;
 
-    @Column(name = "maxPlace", nullable = false)
+    @Column(name = "max_place", nullable = false)
     private Integer maxPlace;
 
-    @OneToOne
-    @JoinColumn(name = "requirement_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "requirement_id", unique = true)
     private RequirementEntity requirementEntity;
 
     @Column(name = "active", nullable = false)

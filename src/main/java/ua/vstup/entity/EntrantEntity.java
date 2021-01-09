@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class EntrantEntity {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false)
@@ -33,7 +33,7 @@ public class EntrantEntity {
     @Column(name = "role", nullable = false)
     private RoleEntity role;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "requirement_id")
     private RequirementEntity requirementEntity;
 

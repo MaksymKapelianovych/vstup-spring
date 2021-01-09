@@ -9,8 +9,6 @@ import java.util.List;
 public interface EntrantService extends AuthenticationProvider {
     void register(Entrant entrant);
 
-    void edit(Entrant entrant);
-
     List<Entrant> getAllEntrants();
 
     void disable(Integer id);

@@ -34,11 +34,6 @@ public class EntrantServiceImpl implements EntrantService {
     }
 
     @Override
-    public void edit(Entrant entrant) {
-
-    }
-
-    @Override
     public List<Entrant> getAllEntrants() {
         return entrantRepository.findAllByRole(RoleEntity.USER).stream()
                 .map(entrantMapper::mapToDomain)

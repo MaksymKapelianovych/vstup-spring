@@ -46,10 +46,24 @@ public class EntrantServiceImpl implements EntrantService {
     }
 
     @Override
-    public void disable(Integer id) { entrantRepository.updateActiveById(id, false); }
+    public void disable(Integer id) {
+        EntrantEntity entrantEntity = entrantRepository.findById(id)
+                .orElseThrow(() -> new IncorrectDataException("Entrant doesn't exist"));
+        entrantEntity.setActive(false);
+        if (entrantRepository.save(entrantEntity).getId() == 0) {
+            throw new IncorrectDataException("");
+        }
+    }
 
     @Override
-    public void enable(Integer id) { entrantRepository.updateActiveById(id, true); }
+    public void enable(Integer id) {
+        EntrantEntity entrantEntity = entrantRepository.findById(id)
+                .orElseThrow(() -> new IncorrectDataException("Entrant doesn't exist"));
+        entrantEntity.setActive(true);
+        if (entrantRepository.save(entrantEntity).getId() == 0) {
+            throw new IncorrectDataException("");
+        }
+    }
 
     @Override
     public Entrant findByEmail(String email) {
@@ -63,7 +77,9 @@ public class EntrantServiceImpl implements EntrantService {
         String password = (String) authentication.getCredentials();
         EntrantEntity userEntity = entrantRepository.findByEmail(email).
                 orElseThrow(() -> new IncorrectDataException("user.does.not.exists"));
-
+        if(!userEntity.getActive()){
+            throw new IncorrectDataException("ENtrant is blocked");
+        }
 
         if (password.equals(userEntity.getPassword())) {
             return new UsernamePasswordAuthenticationToken(userEntity.getEmail(), userEntity.getPassword(), singletonList(new SimpleGrantedAuthority(userEntity.getRole().name())));

@@ -28,6 +28,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public void add(Faculty faculty) {
+        faculty.setActive(true);
         if(facultyRepository.save(facultyMapper.mapToEntity(faculty)).getId() == 0){
             throw new IncorrectDataException("Incorrect data");
         }
@@ -54,6 +55,8 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public void edit(Faculty faculty) {
-        facultyRepository.save(facultyMapper.mapToEntity(faculty));
+        if(facultyRepository.save(facultyMapper.mapToEntity(faculty)).getId() == 0){
+            throw new IncorrectDataException("");
+        }
     }
 }

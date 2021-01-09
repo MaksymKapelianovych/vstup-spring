@@ -55,7 +55,10 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public void updateStateById(Integer id, RequestState requestState) {
-        if(!requestRepository.updateStateById(id, RequestStateEntity.valueOf(requestState.name()))){
+        RequestEntity requestEntity = requestRepository.findById(id)
+                .orElseThrow(() -> new IncorrectDataException("Request doesn't exist"));
+        requestEntity.setRequestStateEntity(RequestStateEntity.valueOf(requestState.name()));
+        if(requestRepository.save(requestEntity).getId() == 0){
             throw new IncorrectDataException("");
         }
     }

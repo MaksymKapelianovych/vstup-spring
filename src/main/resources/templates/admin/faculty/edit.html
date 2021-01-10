@@ -15,8 +15,8 @@
         <input type="hidden" th:field="*{requirement.secondSubject.id}" th:value="${faculty.requirement.secondSubject.id}"/>
         <input type="hidden" th:field="*{requirement.thirdSubject.id}" th:value="${faculty.requirement.thirdSubject.id}"/>
         <div class="input-group">
-            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:field="*{name_en}" th:value="${faculty.name_en}"/>
-            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:field="*{name_ua}" th:value="${faculty.name_ua}"/>
+            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:field="*{nameEn}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
+            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:field="*{nameUa}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
         </div>
         <div class="input-group">
             <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}" th:field="*{maxBudgetPlace}" th:value="${faculty.maxBudgetPlace}"/>

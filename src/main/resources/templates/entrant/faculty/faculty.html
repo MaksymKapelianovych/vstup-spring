@@ -8,7 +8,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col" th:text="#{faculty.name.en}"></th>
+            <th scope="col" th:text="#{faculty.name}"></th>
             <th scope="col" th:text="#{faculty.max.budget.places}"></th>
             <th scope="col" th:text="#{faculty.max.places}"></th>
             <th scope="col"></th>
@@ -17,8 +17,8 @@
         <tbody>
             <tr>
                 <td>
-                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='nameEn')}"  th:text="#{sort.desc}"></a>
-                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='nameUa')}"  th:text="#{sort.asc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy=${#locale.language == 'ua'} ? 'nameUa' : 'nameEn')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy=${#locale.language == 'ua'} ? 'nameUa' : 'nameEn')}"  th:text="#{sort.asc}"></a>
                 </td>
                 <td>
                     <a th:href="@{/entrant/faculty(sort='DESC', nameBy='maxBudgetPlace')}"  th:text="#{sort.desc}"></a>
@@ -31,7 +31,7 @@
                 <td></td>
             </tr>
             <tr th:each="faculty : ${faculties}">
-                <td scope="row" th:text="${faculty.nameEn}"></td>
+                <td scope="row" th:text="${faculty.getNameByLocale(#locale.language)}"></td>
                 <td th:text="${faculty.maxBudgetPlace}"></td>
                 <td th:text="${faculty.maxPlace}"></td>
                 <td><a th:href="@{|/entrant/request/add/${faculty.id}|}" th:text="#{add.request}"></a> </td>
@@ -47,7 +47,7 @@
                th:class="${page > 0} ? 'btn btn-outline-primary' : ' disabled nav-link'"></a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/entrant/entrant(page=${page+1}, sort=${sort}, nameBy=${nameBy})}"
+            <a th:href="@{/entrant/faculty(page=${page+1}, sort=${sort}, nameBy=${nameBy})}"
                th:text="#{next}"
                th:class="${totalPages - 1 > page} ? 'btn btn-outline-primary' : 'disabled nav-link'"></a>
         </li>

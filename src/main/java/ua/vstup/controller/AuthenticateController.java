@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ua.vstup.domain.Entrant;
+import ua.vstup.domain.Role;
 import ua.vstup.domain.SubjectName;
 import ua.vstup.service.EntrantService;
 import ua.vstup.service.SchoolService;
@@ -30,13 +32,14 @@ public class AuthenticateController {
     public String registerPage(Model model){
         model.addAttribute("subjectNames", SubjectName.values());
         model.addAttribute("schools", schoolService.getAll());
+        model.addAttribute("entrant", new Entrant());
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(Entrant entrant){
-        entrantService.register(entrant);
-        return "redirect:/login";
+    public String register(Entrant entrant, @RequestParam("school_id") Integer schoolId){
+        entrantService.register(entrant, schoolId);
+        return "redirect:/";
     }
 
     @GetMapping("/profile")

@@ -8,7 +8,7 @@
 
     <form class="input-form" th:action="@{|/entrant/request/add/${faculty.id}|}" method="post">
         <div class="subjects-group">
-            <label th:text="${faculty.name_ua}"></label>
+            <label th:text="${faculty.getNameByLocale(#locale.language)}"></label>
 
             <div class="input-group">
                 <input class="input_subject form-control" list="subjectNames" name="firstSubject"/>
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:label="${subject.name.name() + subject.rate}"></option>
+                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:label="${subject.name.getNameByLocale(#locale.language) + ' ' + subject.rate}"></option>
                 </datalist>
             </div>
         </div>

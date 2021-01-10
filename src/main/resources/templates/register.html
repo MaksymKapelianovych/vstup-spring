@@ -6,37 +6,37 @@
 <body>
 <header th:replace="/fragment/header :: header"></header>
 <main>
-    <form class="input-form" th:action="@{/register}" method="post">
+    <form class="input-form" th:action="@{/register}" method="post" th:object="${entrant}">
         <div class="main-info">
             <div class="input-group">
-                <input class="input form-control" type="email" name="email" th:placeholder="#{input.email}"/>
-                <input class="input form-control" type="password" name="password" th:placeholder="#{input.password}"/>
+                <input class="input form-control" type="email" name="email" th:field="*{email}" th:placeholder="#{input.email}"/>
+                <input class="input form-control" type="password" name="password" th:field="*{password}" th:placeholder="#{input.password}"/>
             </div>
             <div class="input-group">
-                <input class="input form-control" type="text" name="name" th:placeholder="#{input.name}"/>
+                <input class="input form-control" type="text" name="name" th:field="*{name}" th:placeholder="#{input.name}"/>
                 <input class="input form-control" list="schools" name="school_id" th:placeholder="#{choose.school}"/>
                 <datalist id="schools">
-                    <option th:each="school : ${schools}" th:value="${school.id}" th:label="${school.getName_en() + school.getCity_en() + school.getRegion().name()}"></option>
+                    <option th:each="school : ${schools}" th:value="${school.id}" th:label="${school.getNameByLocale(#locale.language) + ' ' + school.getCityByLocale(#locale.language) + ' ' + school.getRegion().getNameByLocale(#locale.language)}"></option>
                 </datalist>
             </div>
         </div>
         <div class="subjects-group">
             <label th:text="#{subject.rate}"></label>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name1"/>
-                <input class="input form-control" type="number" name="subject_rate1">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name1" th:field="*{requirement.firstSubject.name}"/>
+                <input class="input form-control" type="number" name="subject_rate1" th:field="*{requirement.firstSubject.rate}">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name2"/>
-                <input class="input form-control" type="number" name="subject_rate2">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name2" th:field="*{requirement.secondSubject.name}"/>
+                <input class="input form-control" type="number" name="subject_rate2" th:field="*{requirement.secondSubject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name3"/>
-                <input class="input form-control" type="number" name="subject_rate3">
+                <input class="input_subject form-control" list="subjectNames" name="subject_name3" th:field="*{requirement.thirdSubject.name}"/>
+                <input class="input form-control" type="number" name="subject_rate3" th:field="*{requirement.thirdSubject.rate}"/>
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:label="${subject_name.name()}"></option>
+                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:label="${subject_name.getNameByLocale(#locale.language)}"></option>
                 </datalist>
             </div>
 

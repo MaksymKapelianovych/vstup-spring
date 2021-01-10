@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -24,9 +25,17 @@ public class Entrant {
     private Requirement requirement;
 
     private boolean active;
-    private boolean passed;
 
-    public void setPassed(boolean passed) {
-        this.passed = passed;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entrant entrant = (Entrant) o;
+        return Objects.equals(id, entrant.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

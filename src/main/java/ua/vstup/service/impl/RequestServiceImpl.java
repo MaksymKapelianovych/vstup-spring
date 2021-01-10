@@ -72,6 +72,12 @@ public class RequestServiceImpl implements RequestService {
         RequestEntity requestEntity = requestRepository.findById(id)
                 .orElseThrow(() -> new IncorrectDataException("Request doesn't exist"));
         requestEntity.setRequestStateEntity(RequestStateEntity.valueOf(requestState.name()));
+
+        if(requestState == RequestState.ACCEPTED){
+            requestEntity.setStatementEntity(statementRepository.findByFinalized(false)
+                    .orElseThrow(() -> new IncorrectDataException("There is no active statement")));
+        }
+
         if(requestRepository.save(requestEntity).getId() == 0){
             throw new IncorrectDataException("");
         }

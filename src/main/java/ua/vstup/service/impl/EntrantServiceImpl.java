@@ -10,10 +10,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import ua.vstup.domain.Entrant;
+import ua.vstup.domain.Role;
 import ua.vstup.entity.EntrantEntity;
+import ua.vstup.entity.RequirementEntity;
 import ua.vstup.entity.RoleEntity;
 import ua.vstup.exception.IncorrectDataException;
 import ua.vstup.repository.EntrantRepository;
+import ua.vstup.repository.RequirementRepository;
+import ua.vstup.repository.SchoolRepository;
+import ua.vstup.repository.SubjectRepository;
 import ua.vstup.service.EntrantService;
 import ua.vstup.service.mapper.EntrantMapper;
 import ua.vstup.service.utility.ServiceUtility;
@@ -30,11 +35,21 @@ public class EntrantServiceImpl implements EntrantService {
     private static final int ITEMS_PER_PAGE = 3;
 
     private final EntrantRepository entrantRepository;
+    private final SchoolRepository schoolRepository;
+
     private final EntrantMapper entrantMapper;
 
     @Override
-    public void register(Entrant entrant) {
-        if(entrantRepository.save(entrantMapper.mapToEntity(entrant)).getId() == 0){
+    public void register(Entrant entrant, Integer schoolId) {
+        entrant.setActive(true);
+        entrant.setRole(Role.USER);
+
+        EntrantEntity entrantEntity = entrantMapper.mapToEntity(entrant);
+
+        entrantEntity.setSchoolEntity(schoolRepository.findById(schoolId)
+                .orElseThrow(() -> new IncorrectDataException("School doesn't exist")));
+
+        if(entrantRepository.save(entrantEntity).getId() == 0){
             throw new IncorrectDataException("Incorrect data");
         }
     }

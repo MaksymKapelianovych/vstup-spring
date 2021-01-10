@@ -25,6 +25,7 @@ public class ParameterParser {
     }
 
     public static Sort.Direction parseSortType(String type){
-        return type == null ? Sort.DEFAULT_DIRECTION : Sort.Direction.valueOf(type);
+
+        return type == null || type.isEmpty() ? Sort.DEFAULT_DIRECTION : Sort.Direction.valueOf(type);
     }
 }

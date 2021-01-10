@@ -10,8 +10,8 @@
 <main>
     <form class="input-form" th:action="@{/admin/faculty/add}" method="post">
         <div class="input-group">
-            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}"/>
-            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}"/>
+            <input class="input form-control" type="text" name="nameEn" th:placeholder="#{faculty.name.en}"/>
+            <input class="input form-control" type="text" name="nameUa" th:placeholder="#{faculty.name.ua}"/>
         </div>
         <div class="input-group">
             <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}"/>
@@ -33,7 +33,7 @@
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.name()}"></option>
+                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.getNameByLocale(#locale.language)}"></option>
                 </datalist>
             </div>
         </div>

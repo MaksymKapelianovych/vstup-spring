@@ -11,17 +11,41 @@ public class School {
     private Integer id;
 
     @NotNull(message = "school.name_ua.exception.message")
-    private String name_ua;
+    private String nameUa;
 
     @NotNull(message = "school.name_en.exception.message")
-    private String name_en;
+    private String nameEn;
 
     @NotNull(message = "school.city_ua.exception.message")
-    private String city_ua;
+    private String cityUa;
 
     @NotNull(message = "school.city_en.exception.message")
-    private String city_en;
+    private String cityEn;
 
     @NotNull(message = "school.region.null.exception.message")
     private Region region;
+
+    public String getNameByLocale(String locale){
+        if(locale == null){
+            return nameEn;
+        }
+        switch (locale){
+            case "ua":
+                return nameUa;
+            default:
+                return nameEn;
+        }
+    }
+
+    public String getCityByLocale(String locale){
+        if(locale == null){
+            return cityEn;
+        }
+        switch (locale){
+            case "ua":
+                return cityUa;
+            default:
+                return cityEn;
+        }
+    }
 }

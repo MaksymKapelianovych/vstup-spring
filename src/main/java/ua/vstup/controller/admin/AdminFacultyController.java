@@ -26,12 +26,12 @@ public class AdminFacultyController {
         model.addAttribute("totalPages", totalPages);
 
         Sort sort = null;
-        if(nameBy != null) {
-            Sort.Direction direction = ParameterParser.parseSortType(sortBy);
-            sort = Sort.by(direction, nameBy);
+        if(nameBy != null && !nameBy.isEmpty()){
+            sort = Sort.by(ParameterParser.parseSortType(sortBy), nameBy);
             model.addAttribute("sort", sortBy);
             model.addAttribute("nameBy", nameBy);
         }
+
 
         model.addAttribute("page", ParameterParser.parsePageNumber(page, 0, totalPages));
 

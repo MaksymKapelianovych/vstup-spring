@@ -7,7 +7,7 @@ import ua.vstup.domain.Subject;
 import java.util.List;
 
 public interface EntrantService extends AuthenticationProvider {
-    void register(Entrant entrant);
+    void register(Entrant entrant, Integer schoolId);
 
     List<Entrant> getAllEntrants(String page);
     int pageCount();

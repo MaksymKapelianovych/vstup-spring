@@ -15,20 +15,20 @@
                 <th scope="col" th:text="#{subject.rate}"></th>
                 <th scope="col" th:text="#{subject.name}"></th>
                 <th scope="col" th:text="#{subject.rate}"></th>
-                <th scope="col" th:text="#{request.state}"></th>
+                <th scope="col" th:text="#{state}"></th>
 
             </tr>
         </thead>
         <tbody>
             <tr th:each="request : ${requests}">
-                <td scope="row" th:text="${request.faculty.name_en}"></td>
-                <td th:text="${request.firstSubject.name}"></td>
+                <td scope="row" th:text="${request.faculty.getNameByLocale(#locale.language)}"></td>
+                <td th:text="${request.firstSubject.name.getNameByLocale(#locale.language)}"></td>
                 <td th:text="${request.firstSubject.rate}"></td>
-                <td th:text="${request.secondSubject.name}"></td>
+                <td th:text="${request.secondSubject.name.getNameByLocale(#locale.language)}"></td>
                 <td th:text="${request.secondSubject.rate}"></td>
-                <td th:text="${request.thirdSubject.name}"></td>
+                <td th:text="${request.thirdSubject.name.getNameByLocale(#locale.language)}"></td>
                 <td th:text="${request.thirdSubject.rate}"></td>
-                <td th:text="${request.requestState}"></td>
+                <td th:text="${request.requestState.getNameByLocale(#locale.language)}"></td>
            </tr>
         </tbody>
     </table>

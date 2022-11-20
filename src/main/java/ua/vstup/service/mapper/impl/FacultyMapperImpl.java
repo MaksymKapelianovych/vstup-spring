@@ -19,10 +19,10 @@ public class FacultyMapperImpl implements FacultyMapper {
         }
         Faculty faculty = new Faculty();
         faculty.setId(entity.getId());
-        faculty.setNameEn(entity.getNameEn());
-        faculty.setNameUa(entity.getNameUa());
-        faculty.setMaxBudgetPlace(entity.getMaxBudgetPlace());
-        faculty.setMaxPlace(entity.getMaxPlace());
+        faculty.setName_en(entity.getNameEn());
+        faculty.setName_ua(entity.getNameUa());
+        faculty.setMax_budget_place(entity.getMaxBudgetPlace());
+        faculty.setMax_place(entity.getMaxPlace());
         faculty.setRequirement(requirementMapper.mapToDomain(entity.getRequirementEntity()));
         faculty.setActive(entity.getActive());
         return faculty;
@@ -35,10 +35,10 @@ public class FacultyMapperImpl implements FacultyMapper {
         }
         FacultyEntity entity = new FacultyEntity();
         entity.setId(domain.getId());
-        entity.setNameEn(domain.getNameEn());
-        entity.setNameUa(domain.getNameUa());
-        entity.setMaxBudgetPlace(domain.getMaxBudgetPlace());
-        entity.setMaxPlace(domain.getMaxPlace());
+        entity.setNameEn(domain.getName_en());
+        entity.setNameUa(domain.getName_ua());
+        entity.setMaxBudgetPlace(domain.getMax_budget_place());
+        entity.setMaxPlace(domain.getMax_place());
         entity.setRequirementEntity(requirementMapper.mapToEntity(domain.getRequirement()));
         entity.setActive(domain.getActive());
         return entity;

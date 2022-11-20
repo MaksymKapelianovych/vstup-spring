@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragment/head :: head">
+</head>
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: entrant-ul"></ul>
+<main>
+    <form class="input-form" th:action="@{/entrant/upload-doc/save}"  method="POST"  enctype="multipart/form-data" th:object="${doc}">
+        <input type="hidden" th:field="*{id}" th:value="${doc.id}"/>
+        <input type="hidden" th:field="*{type}" th:value="${doc.type}"/>
+        <div  class="row justify-content-center">
+            <label th:text="#{doc.type}"/>
+            <input disabled class="form-control" type="text" th:name="type" th:value="${doc.type}"/>
+            <label th:text="#{doc.file}"/>
+            <input class="form-control" type="file" name="file" />
+            <div><button class="btn btn-outline-primary" type="submit"  th:text="#{upload.button}"></button></div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

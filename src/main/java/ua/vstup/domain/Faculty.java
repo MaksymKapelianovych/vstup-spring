@@ -1,6 +1,5 @@
 package ua.vstup.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,18 +14,18 @@ public class Faculty {
     private Integer id;
 
     @NotNull(message = "faculty.name_ua.exception.message")
-    private String nameUa;
+    private String name_ua;
 
     @NotNull(message = "faculty.name_en.exception.message")
-    private String nameEn;
+    private String name_en;
 
-    @PositiveOrZero(message = "faculty.maxBudgetPlace.not.positive.exception.message")
+    @PositiveOrZero(message = "faculty.max_budget_place.not.positive.exception.message")
     @NotNull(message = "faculty.maxBudgetPlace.exception.message")
-    private Integer maxBudgetPlace;
+    private Integer max_budget_place;
 
-    @Positive(message = "faculty.maxPlace.not.positive.exception.message")
-    @NotNull(message = "faculty.maxPlace.exception.message")
-    private Integer maxPlace;
+    @Positive(message = "faculty.max_place.not.positive.exception.message")
+    @NotNull(message = "faculty.max_place.exception.message")
+    private Integer max_place;
 
     @NotNull(message = "faculty.requirementInfo.null.exception.message")
     private Requirement requirement;
@@ -35,22 +34,22 @@ public class Faculty {
 
     public String getNameByLocale(String locale){
         if(locale == null){
-            return nameEn;
+            return name_en;
         }
         switch (locale){
             case "ua":
-                return nameUa;
+                return name_ua;
             default:
-                return nameEn;
+                return name_en;
         }
     }
 
     public void decreasePlace() {
-        maxPlace--;
+        max_place--;
     }
 
     public void decreaseBudgetPlace() {
-        maxBudgetPlace--;
+        max_budget_place--;
         decreasePlace();
     }
 

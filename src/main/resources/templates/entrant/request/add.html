@@ -11,17 +11,21 @@
             <label th:text="${faculty.getNameByLocale(#locale.language)}"></label>
 
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="firstSubject"/>
+                <input class="select_subject form-control" list="subjects" id="first_subject" name="first_subject"/>
+                <input type="hidden" name="subject_name1-hidden" id="first_subject-hidden">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="secondSubject"/>
+                <input class="select_subject form-control" list="subjects" id="second_subject" name="second_subject"/>
+                <input type="hidden" name="subject_name1-hidden" id="second_subject-hidden">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="thirdSubject"/>
+                <input class="select_subject form-control" list="subjects" id="third_subject" name="third_subject"/>
+                <input type="hidden" name="subject_name1-hidden" id="third_subject-hidden">
             </div>
             <div>
-                <datalist id="subjectNames">
-                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:label="${subject.name.getNameByLocale(#locale.language) + ' ' + subject.rate}"></option>
+                <datalist id="subjects">
+                    <option th:each="subjects_option : ${subjectNames}" th:data-value="${subjects_option.id}" th:text="${subjects_option.name.getNameByLocale(#locale.language) + ' ' + subjects_option.rate}}"></option>
+<!--                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:label="${subject.name.getNameByLocale(#locale.language) + ' ' + subject.rate}"></option>-->
                 </datalist>
             </div>
         </div>
@@ -31,17 +35,6 @@
         </div>
     </form>
 </main>
-<script>
-    const inputs = Array.from(document.querySelectorAll(".input_subject"))
-    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
-        inputs.forEach((i) => {
-            if(input !== i) {
-                if (input.value === i.value) {
-                    input.value = ""
-                }
-            }
-        })
-    }))
-</script>
+<script type="text/javascript" th:src="@{/js/subject_list.js}"></script>
 </body>
 </html>

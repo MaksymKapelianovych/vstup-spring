@@ -13,15 +13,15 @@ public class Requirement {
     private Integer id;
 
     @NotNull(message = "requirementInfo.firstSubject.null.exception.message")
-    private Subject firstSubject;
+    private Subject first_subject;
 
     @NotNull(message = "requirementInfo.secondSubject.null.exception.message")
-    private Subject secondSubject;
+    private Subject second_subject;
 
     @NotNull(message = "requirementInfo.thirdSubject.null.exception.message")
-    private Subject thirdSubject;
+    private Subject third_subject;
 
-    public List<Subject> getSubjectList() { return Arrays.asList(firstSubject, secondSubject, thirdSubject);}
+    public List<Subject> getSubjectList() { return Arrays.asList(first_subject, second_subject, third_subject);}
 
     public Subject getSubjectBySubjectName(SubjectName subjectName){
         return getSubjectList().stream()

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -38,6 +40,29 @@ public class EntrantServiceImpl implements EntrantService {
     private final SchoolRepository schoolRepository;
 
     private final EntrantMapper entrantMapper;
+
+    private final JavaMailSender mailSender;
+
+    @Override
+    public void sendMail(){
+        String from = "sender@gmail.com";
+        String to = "m.kapelianovych@gmail.com";
+
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom(from);
+        message.setTo(to);
+        message.setSubject("This is a plain text email");
+        message.setText("Hello guys! This is a plain text email.");
+
+        mailSender.send(message);
+    }
+
+    @Override
+    public Entrant findById(Integer id) {
+        return entrantMapper.mapToDomain(entrantRepository.findById(id)
+                .orElseThrow(() -> new IncorrectDataException("")));
+    }
 
     @Override
     public void register(Entrant entrant, Integer schoolId) {

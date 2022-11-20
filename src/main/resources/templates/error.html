@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="/fragment/head :: head">
+<body>
+<div class="container">
+  <h1 th:text="#{errorPageMessage.text}"> </h1>
+  <h2 th:text="#{errorPageWorkMessage.text}"> </h2>
+  <a class="btn btn-outline-primary" href="/" th:text="#{back}"></a>
+</div>
+</body>
+</html>

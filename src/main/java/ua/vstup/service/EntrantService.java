@@ -16,4 +16,8 @@ public interface EntrantService extends AuthenticationProvider {
     void enable(Integer id);
 
     Entrant findByEmail(String username);
+
+    void sendMail();
+
+    Entrant findById(Integer id);
 }

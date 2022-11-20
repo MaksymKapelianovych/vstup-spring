@@ -18,9 +18,9 @@ public class RequirementMapperImpl implements RequirementMapper {
         }
         Requirement requirement = new Requirement();
         requirement.setId(entity.getId());
-        requirement.setFirstSubject(subjectMapper.mapToDomain(entity.getFirstSubjectEntity()));
-        requirement.setSecondSubject(subjectMapper.mapToDomain(entity.getSecondSubjectEntity()));
-        requirement.setThirdSubject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
+        requirement.setFirst_subject(subjectMapper.mapToDomain(entity.getFirstSubjectEntity()));
+        requirement.setSecond_subject(subjectMapper.mapToDomain(entity.getSecondSubjectEntity()));
+        requirement.setThird_subject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
         return requirement;
     }
 
@@ -31,9 +31,9 @@ public class RequirementMapperImpl implements RequirementMapper {
         }
         RequirementEntity entity = new RequirementEntity();
         entity.setId(domain.getId());
-        entity.setFirstSubjectEntity(subjectMapper.mapToEntity(domain.getFirstSubject()));
-        entity.setSecondSubjectEntity(subjectMapper.mapToEntity(domain.getSecondSubject()));
-        entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThirdSubject()));
+        entity.setFirstSubjectEntity(subjectMapper.mapToEntity(domain.getFirst_subject()));
+        entity.setSecondSubjectEntity(subjectMapper.mapToEntity(domain.getSecond_subject()));
+        entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThird_subject()));
         return entity;
     }
 }

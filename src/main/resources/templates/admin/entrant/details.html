@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+    <form class="view-form">
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.name}">
+            <input class="form-control" disabled th:value="${entrant.email}">
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.school.getNameByLocale(#locale.language) + ', ' + entrant.school.getCityByLocale(#locale.language) + ', ' + entrant.school.region.getNameByLocale(#locale.language)}">
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.requirement.first_subject.name.getNameByLocale(#locale.language)}">
+            <input class="form-control" disabled th:value="${entrant.requirement.first_subject.rate}">
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.requirement.second_subject.name.getNameByLocale(#locale.language)}">
+            <input class="form-control" disabled th:value="${entrant.requirement.second_subject.rate}">
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.requirement.third_subject.name.getNameByLocale(#locale.language)}">
+            <input class="form-control" disabled th:value="${entrant.requirement.third_subject.rate}">
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.certificate} ? ${entrant.certificate.path}" >
+            <a class="btn btn-success" th:href="@{|entrant/upload-doc/page/CERTIFICATION|}" th:text="#{upload}"></a>
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.passport} ? ${entrant.passport.path}" >
+            <a class="btn btn-success" th:href="@{|entrant/upload-doc/page/PASSPORT|}" th:text="#{upload}"></a>
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.photo} ? ${entrant.photo.path}" >
+            <a class="btn btn-success" th:href="@{|entrant/upload-doc/page/PHOTO|}" th:text="#{upload}"></a>
+        </div>
+        <div class="input-group">
+            <input class="form-control" disabled th:value="${entrant.assessment} ? ${entrant.assessment.path}" >
+            <a class="btn btn-success" th:href="@{|entrant/upload-doc/page/ASSESSMENT|}" th:text="#{upload}"></a>
+        </div>
+    </form>
+
+</main>
+
+</body>
+</html>

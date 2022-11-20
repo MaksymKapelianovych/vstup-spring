@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+    <form class="input-form" th:action="@{/admin/school/add}" method="post" th:object="${school}">
+        <input type="hidden" th:field="*{id}" th:value="${school.id}"/>
+        <input type="hidden" th:field="*{is_active}" th:value="${school.is_active}"/>
+        <input type="hidden" th:field="*{unique_school_id}" th:value="${school.unique_school_id}"/>
+        <div class="input-group">
+            <input class="input form-control" type="text" name="name_en" th:placeholder="#{school.name.en}" th:field="*{name_en}" th:value="${school.getNameByLocale(#locale.language)}"/>
+            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{school.name.ua}" th:field="*{name_ua}" th:value="${school.getNameByLocale(#locale.language)}"/>
+        </div>
+        <div class="input-group">
+            <input class="input form-control" type="text" name="city_en" th:placeholder="#{school.city.en}" th:field="*{city_en}" th:value="${school.getCityByLocale(#locale.language)}"/>
+            <input class="input form-control" type="text" name="city_ua" th:placeholder="#{school.city.ua}" th:field="*{city_ua}" th:value="${school.getCityByLocale(#locale.language)}"/>
+        </div>
+        <div class="input-group">
+            <input class="input form-control" type="text" name="region" th:placeholder="#{school.region}" th:field="*{region}" th:value="${school.region}"/>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-outline-primary" type="submit" onclick="set_selected_values()" th:text="#{register.button}"></button>
+            <a class="btn btn-outline-success" th:href="@{/admin/school}" th:text="#{back}"></a>
+        </div>
+    </form>
+</main>
+<script type="text/javascript" th:src="@{/js/school_list.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/subject_list.js}"></script>-->
+</body>
+</html>

@@ -8,52 +8,53 @@
 <header th:replace="/fragment/header :: header"></header>
 <ul th:replace="/fragment/links :: admin-ul"></ul>
 <main>
-    <form class="input-form" th:action="@{/admin/faculty/add}" method="post">
+    <form class="input-form" th:action="@{/admin/faculty/add}" method="post" th:object="${faculty}">
         <div class="input-group">
-            <input class="input form-control" type="text" name="nameEn" th:placeholder="#{faculty.name.en}"/>
-            <input class="input form-control" type="text" name="nameUa" th:placeholder="#{faculty.name.ua}"/>
+            <input class="input form-control" type="text" name="name_en" th:field="*{name_en}" th:placeholder="#{faculty.name.en}"/>
+            <input class="input form-control" type="text" name="name_ua" th:field="*{name_ua}" th:placeholder="#{faculty.name.ua}"/>
         </div>
         <div class="input-group">
-            <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}"/>
-            <input class="input form-control" type="text" name="maxPlace" th:placeholder="#{faculty.max.places}"/>
+            <input class="input form-control" type="text" name="max_budget_place" th:field="*{max_budget_place}" th:placeholder="#{faculty.max.budget.places}"/>
+            <input class="input form-control" type="text" name="max_place" th:field="*{max_place}" th:placeholder="#{faculty.max.places}"/>
         </div>
         <div class="subjects-group">
             <label th:text="#{subject.rate}"></label>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.firstSubject.name"/>
-                <input class="input form-control" type="number" name="requirement.firstSubject.rate">
+                <!-- Dropdown list for choosing subject -->
+<!--                <input class="select_subject form-control" list="subjectNames" id="requirement.first_subject.name" name="requirement.first_subject.name"/>-->
+                <input class="select_subject form-control" list="subjectNames"/>
+                <input type="hidden" name="requirement.first_subject.name" th:field="*{requirement.first_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.first_subject.rate" th:field="*{requirement.first_subject.rate}">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.secondSubject.name"/>
-                <input class="input form-control" type="number" name="requirement.secondSubject.rate">
+                <!-- Dropdown list for choosing subject -->
+<!--                <input class="select_subject form-control" list="subjectNames" id="requirement.second_subject.name" name="requirement.second_subject.name"/>-->
+                <input class="select_subject form-control" list="subjectNames"/>
+                <input type="hidden" name="requirement.second_subject.name" th:field="*{requirement.second_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.second_subject.rate" th:field="*{requirement.second_subject.rate}">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.thirdSubject.name"/>
-                <input class="input form-control" type="number" name="requirement.thirdSubject.rate">
+                <!-- Dropdown list for choosing subject -->
+<!--                <input class="select_subject form-control" list="subjectNames" id="requirement.third_subject.name" name="requirement.third_subject.name"/>-->
+                <input class="select_subject form-control" list="subjectNames"/>
+                <input type="hidden" name="requirement.third_subject.name" th:field="*{requirement.third_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.third_subject.rate" th:field="*{requirement.third_subject.rate}">
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.getNameByLocale(#locale.language)}"></option>
+                    <option id="subjectNames_option" th:each="subjectName : ${subjectNames}" th:data-value="${subjectName}" th:text="${subjectName.getNameByLocale(#locale.language)}"></option>
                 </datalist>
             </div>
         </div>
         <div class="buttons">
-            <button class="btn btn-outline-primary" type="submit" th:text="#{register.button}"></button>
+            <button class="btn btn-outline-primary" type="submit" onclick="set_selected_values()" th:text="#{register.button}"></button>
             <a class="btn btn-outline-success" th:href="@{/admin/faculty}" th:text="#{back}"></a>
         </div>
     </form>
 </main>
-<script>
-    const inputs = Array.from(document.querySelectorAll(".input_subject"))
-    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
-        inputs.forEach((i) => {
-            if(input !== i) {
-                if (input.value === i.value) {
-                    input.value = ""
-                }
-            }
-        })
-    }))
-</script>
+<script type="text/javascript" th:src="@{/js/school_list.js}"></script>
 </body>
 </html>

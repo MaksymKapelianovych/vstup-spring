@@ -3,6 +3,7 @@ package ua.vstup.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -11,41 +12,45 @@ public class School {
     private Integer id;
 
     @NotNull(message = "school.name_ua.exception.message")
-    private String nameUa;
+    private String name_ua;
 
     @NotNull(message = "school.name_en.exception.message")
-    private String nameEn;
+    private String name_en;
 
     @NotNull(message = "school.city_ua.exception.message")
-    private String cityUa;
+    private String city_ua;
 
     @NotNull(message = "school.city_en.exception.message")
-    private String cityEn;
+    private String city_en;
 
     @NotNull(message = "school.region.null.exception.message")
     private Region region;
 
+    private Boolean is_active;
+
+    private Integer unique_school_id;
+
     public String getNameByLocale(String locale){
         if(locale == null){
-            return nameEn;
+            return name_en;
         }
         switch (locale){
             case "ua":
-                return nameUa;
+                return name_ua;
             default:
-                return nameEn;
+                return name_en;
         }
     }
 
     public String getCityByLocale(String locale){
         if(locale == null){
-            return cityEn;
+            return city_en;
         }
         switch (locale){
             case "ua":
-                return cityUa;
+                return city_ua;
             default:
-                return cityEn;
+                return city_en;
         }
     }
 }

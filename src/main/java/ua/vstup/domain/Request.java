@@ -17,22 +17,22 @@ public class Request {
     private Faculty faculty;
 
     @NotNull(message = "requestInfo.firstSubject.null.exception.message")
-    private Subject firstSubject;
+    private Subject first_subject;
 
     @NotNull(message = "requestInfo.secondSubject.null.exception.message")
-    private Subject secondSubject;
+    private Subject second_subject;
 
     @NotNull(message = "requestInfo.thirdSubject.null.exception.message")
-    private Subject thirdSubject;
+    private Subject third_subject;
 
     private Statement statement;
     private Integer priority;
-    private RequestState requestState;
+    private RequestState request_state;
 
     public Integer getRate() {
-        return getFirstSubject().getRate() +
-                getSecondSubject().getRate() +
-                getThirdSubject().getRate();
+        return getFirst_subject().getRate() +
+                getSecond_subject().getRate() +
+                getThird_subject().getRate();
     }
 
 }

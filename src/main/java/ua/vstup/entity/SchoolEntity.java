@@ -30,4 +30,10 @@ public class SchoolEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "region", nullable = false)
     private RegionEntity regionEntity;
+
+    @Column(name = "is_active", nullable = false)
+    private Boolean is_active;
+
+    @Column(name = "unique_school_id", nullable = false)
+    private Integer uniqueSchoolId;
 }

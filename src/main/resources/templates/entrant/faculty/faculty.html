@@ -17,23 +17,23 @@
         <tbody>
             <tr>
                 <td>
-                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy=${#locale.language == 'ua'} ? 'nameUa' : 'nameEn')}"  th:text="#{sort.desc}"></a>
-                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy=${#locale.language == 'ua'} ? 'nameUa' : 'nameEn')}"  th:text="#{sort.asc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy=${#locale.language == 'ua'} ? 'name_ua' : 'name_en')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy=${#locale.language == 'ua'} ? 'name_ua' : 'name_en')}"  th:text="#{sort.asc}"></a>
                 </td>
                 <td>
-                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='maxBudgetPlace')}"  th:text="#{sort.desc}"></a>
-                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='maxBudgetPlace')}"  th:text="#{sort.asc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='max_budget_place')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='max_budget_place')}"  th:text="#{sort.asc}"></a>
                 </td>
                 <td>
-                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='maxPlace')}"  th:text="#{sort.desc}"></a>
-                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='maxPlace')}"  th:text="#{sort.asc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='DESC', nameBy='max_place')}"  th:text="#{sort.desc}"></a>
+                    <a th:href="@{/entrant/faculty(sort='ASC', nameBy='max_place')}"  th:text="#{sort.asc}"></a>
                 </td>
                 <td></td>
             </tr>
             <tr th:each="faculty : ${faculties}">
                 <td scope="row" th:text="${faculty.getNameByLocale(#locale.language)}"></td>
-                <td th:text="${faculty.maxBudgetPlace}"></td>
-                <td th:text="${faculty.maxPlace}"></td>
+                <td th:text="${faculty.max_budget_place}"></td>
+                <td th:text="${faculty.max_place}"></td>
                 <td><a th:href="@{|/entrant/request/add/${faculty.id}|}" th:text="#{add.request}"></a> </td>
             </tr>
         </tbody>

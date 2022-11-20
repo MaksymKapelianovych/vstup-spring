@@ -26,15 +26,15 @@
             <tr th:each="request : ${requests}">
                 <td scope="row" th:text="${request.entrant.name}"></td>
                 <td th:text="${request.faculty.getNameByLocale(#locale.language)}"></td>
-                <td th:text="${request.firstSubject.name.getNameByLocale(#locale.language)}"></td>
-                <td th:text="${request.firstSubject.rate}"></td>
-                <td th:text="${request.secondSubject.name.getNameByLocale(#locale.language)}"></td>
-                <td th:text="${request.secondSubject.rate}"></td>
-                <td th:text="${request.thirdSubject.name.getNameByLocale(#locale.language)}"></td>
-                <td th:text="${request.thirdSubject.rate}"></td>
-                <td th:text="${request.requestState.getNameByLocale(#locale.language)}"></td>
-                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/accept/${request.id}|}" th:text="#{request.accept}"></a></td>
-                <td th:if="${request.requestState.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/disable/${request.id}|}" th:text="#{request.disable}"></a></td>
+                <td th:text="${request.first_subject.name.getNameByLocale(#locale.language)}"></td>
+                <td th:text="${request.first_subject.rate}"></td>
+                <td th:text="${request.second_subject.name.getNameByLocale(#locale.language)}"></td>
+                <td th:text="${request.second_subject.rate}"></td>
+                <td th:text="${request.third_subject.name.getNameByLocale(#locale.language)}"></td>
+                <td th:text="${request.third_subject.rate}"></td>
+                <td th:text="${request.request_state.getNameByLocale(#locale.language)}"></td>
+                <td th:if="${request.request_state.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/accept/${request.id}|}" th:text="#{request.accept}"></a></td>
+                <td th:if="${request.request_state.name() == 'ACTIVE'}"><a th:href="@{|/admin/request/disable/${request.id}|}" th:text="#{request.disable}"></a></td>
             </tr>
         </tbody>
     </table>

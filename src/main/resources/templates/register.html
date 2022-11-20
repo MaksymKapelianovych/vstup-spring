@@ -6,7 +6,7 @@
 <body>
 <header th:replace="/fragment/header :: header"></header>
 <main>
-    <form class="input-form" th:action="@{/register}" method="post" th:object="${entrant}">
+    <form class="input-form" th:action="@{/register}" method="post" th:object="${userInfo}">
         <div class="main-info">
             <div class="input-group">
                 <input class="input form-control" type="email" name="email" th:field="*{email}" th:placeholder="#{input.email}"/>
@@ -14,51 +14,52 @@
             </div>
             <div class="input-group">
                 <input class="input form-control" type="text" name="name" th:field="*{name}" th:placeholder="#{input.name}"/>
-                <input class="input form-control" list="schools" name="school_id" th:placeholder="#{choose.school}"/>
+                <input class="select_school form-control" list="schools" th:placeholder="#{choose.school}"/>
+                <input type="hidden" name="school_id" id="school_id" th:field="*{school_id}">
                 <datalist id="schools">
-                    <option th:each="school : ${schools}" th:value="${school.id}" th:label="${school.getNameByLocale(#locale.language) + ' ' + school.getCityByLocale(#locale.language) + ' ' + school.getRegion().getNameByLocale(#locale.language)}"></option>
+                    <option id="schools_option" th:each="school : ${schools}" th:data-value="${school.id}" th:text="${school.getNameByLocale(#locale.language) + ', ' + school.getCityByLocale(#locale.language) + ', ' + school.region.getNameByLocale(#locale.language)}" ></option>
                 </datalist>
             </div>
         </div>
         <div class="subjects-group">
             <label th:text="#{subject.rate}"></label>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name1" th:field="*{requirement.firstSubject.name}"/>
-                <input class="input form-control" type="number" name="subject_rate1" th:field="*{requirement.firstSubject.rate}">
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" id="subject_name1" name="subject_name1"/>
+                <input type="hidden" name="requirement.first_subject.name" id="subject_name1-hidden" th:field="*{requirement.first_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.first_subject.rate" th:field="*{requirement.first_subject.rate}">
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name2" th:field="*{requirement.secondSubject.name}"/>
-                <input class="input form-control" type="number" name="subject_rate2" th:field="*{requirement.secondSubject.rate}"/>
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" id="subject_name2" name="subject_name2"/>
+                <input type="hidden" name="requirement.second_subject.name" id="subject_name2-hidden" th:field="*{requirement.second_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.second_subject.rate" th:field="*{requirement.second_subject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="subject_name3" th:field="*{requirement.thirdSubject.name}"/>
-                <input class="input form-control" type="number" name="subject_rate3" th:field="*{requirement.thirdSubject.rate}"/>
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" id="subject_name3" name="subject_name3"/>
+                <input type="hidden" name="requirement.third_subject.name" id="subject_name3-hidden" th:field="*{requirement.third_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.third_subject.rate" th:field="*{requirement.third_subject.rate}"/>
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:label="${subject_name.getNameByLocale(#locale.language)}"></option>
+                    <option id="subjectNames_option" th:each="subjectName : ${subjectNames}" th:data-value="${subjectName}" th:text="${subjectName.getNameByLocale(#locale.language)}"></option>
                 </datalist>
             </div>
 
             <div class="buttons">
-                <button class="btn btn-outline-primary" type="submit" th:text="#{register.button}"></button>
+                <button class="btn btn-outline-primary" onclick="set_selected_values()" type="submit" th:text="#{register.button}"></button>
                 <a class="btn btn-success" th:href="@{/}" th:text="#{back}"></a>
             </div>
 
         </div>
     </form>
 </main>
-<script>
-    const inputs = Array.from(document.querySelectorAll(".input_subject"))
-    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
-        inputs.forEach((i) => {
-            if(input !== i) {
-                if (input.value === i.value) {
-                    input.value = ""
-                }
-            }
-        })
-    }))
-</script>
+
+<!--<script type="text/javascript" th:src="@{/js/subject_list.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/school_list.js}"></script>
 </body>
 </html>

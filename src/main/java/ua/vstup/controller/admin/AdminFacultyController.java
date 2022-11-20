@@ -42,6 +42,7 @@ public class AdminFacultyController {
     @GetMapping("add")
     public String addPage(Model model){
         model.addAttribute("subjectNames", SubjectName.values());
+        model.addAttribute("faculty", new Faculty());
         return "admin/faculty/add";
     }
 

@@ -28,12 +28,12 @@ public class RequestMapperImpl implements RequestMapper {
         request.setId(entity.getId());
         request.setEntrant(entrantMapper.mapToDomain(entity.getEntrantEntity()));
         request.setFaculty(facultyMapper.mapToDomain(entity.getFacultyEntity()));
-        request.setFirstSubject(subjectMapper.mapToDomain(entity.getFirstSubjectEntity()));
-        request.setSecondSubject(subjectMapper.mapToDomain(entity.getSecondSubjectEntity()));
-        request.setThirdSubject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
+        request.setFirst_subject(subjectMapper.mapToDomain(entity.getFirstSubjectEntity()));
+        request.setSecond_subject(subjectMapper.mapToDomain(entity.getSecondSubjectEntity()));
+        request.setThird_subject(subjectMapper.mapToDomain(entity.getThirdSubjectEntity()));
         request.setStatement(statementMapper.mapToDomain(entity.getStatementEntity()));
         request.setPriority(entity.getPriority());
-        request.setRequestState(RequestState.valueOf(entity.getRequestStateEntity().name()));
+        request.setRequest_state(RequestState.valueOf(entity.getRequestStateEntity().name()));
         return request;
     }
 
@@ -46,12 +46,12 @@ public class RequestMapperImpl implements RequestMapper {
         entity.setId(domain.getId());
         entity.setEntrantEntity(entrantMapper.mapToEntity(domain.getEntrant()));
         entity.setFacultyEntity(facultyMapper.mapToEntity(domain.getFaculty()));
-        entity.setFirstSubjectEntity(subjectMapper.mapToEntity(domain.getFirstSubject()));
-        entity.setSecondSubjectEntity(subjectMapper.mapToEntity(domain.getSecondSubject()));
-        entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThirdSubject()));
+        entity.setFirstSubjectEntity(subjectMapper.mapToEntity(domain.getFirst_subject()));
+        entity.setSecondSubjectEntity(subjectMapper.mapToEntity(domain.getSecond_subject()));
+        entity.setThirdSubjectEntity(subjectMapper.mapToEntity(domain.getThird_subject()));
         entity.setStatementEntity(statementMapper.mapToEntity(domain.getStatement()));
         entity.setPriority(domain.getPriority());
-        entity.setRequestStateEntity(RequestStateEntity.valueOf(domain.getRequestState().name()));
+        entity.setRequestStateEntity(RequestStateEntity.valueOf(domain.getRequest_state().name()));
         return entity;
     }
 }

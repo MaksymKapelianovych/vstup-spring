@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+<header th:replace="/fragment/header :: header"></header>
+<ul th:replace="/fragment/links :: admin-ul"></ul>
+<main>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col" th:text="#{school.name}"></th>
+      <th scope="col" th:text="#{school.city}"></th>
+      <th scope="col" th:text="#{school.region}"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <a th:href="@{/admin/school(sort='DESC', nameBy=${#locale.language == 'ua'} ? 'name_ua' : 'name_en')}"  th:text="#{sort.desc}"></a>
+        <a th:href="@{/admin/school(sort='ASC', nameBy=${#locale.language == 'ua'} ? 'name_ua' : 'name_en')}"  th:text="#{sort.asc}"></a>
+      </td>
+      <td>
+        <a th:href="@{/admin/school(sort='DESC', nameBy=${#locale.language == 'ua'} ? 'city_ua' : 'city_en')}"  th:text="#{sort.desc}"></a>
+        <a th:href="@{/admin/school(sort='ASC', nameBy=${#locale.language == 'ua'} ? 'city_ua' : 'city_en')}"  th:text="#{sort.asc}"></a>
+      </td>
+      <td>
+        <a th:href="@{/admin/school(sort='DESC', nameBy='region')}"  th:text="#{sort.desc}"></a>
+        <a th:href="@{/admin/school(sort='ASC', nameBy='region')}"  th:text="#{sort.asc}"></a>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr th:each="school : ${schools}">
+      <td scope="row" th:text="${school.getNameByLocale(#locale.language)}"></td>
+      <td th:text="${school.getCityByLocale(#locale.language)}"></td>
+      <td th:text="${school.region.getNameByLocale(#locale.language)}"></td>
+      <td><a class="btn btn-outline-primary" th:href="@{|/admin/school/edit/${school.id}|}" th:text="#{edit.school}"></a></td>
+      <td><a class="btn btn-outline-primary" th:href="@{|/admin/school/history/${school.unique_school_id}|}" th:text="#{history.school}"></a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-outline-success" th:href="@{/admin/school/add}" th:text="#{add.school}"></a>
+</main>
+<footer>
+  <ul class="nav nav-tabs justify-content-center" th:if="${totalPages > 0}">
+    <li class="nav-item">
+      <a th:href="@{/admin/school(page=${page+(-1)}, sort=${sort}, nameBy=${nameBy})}"
+         th:text="#{back}"
+         th:class="${page > 0} ? 'btn btn-outline-primary' : ' disabled nav-link'"></a>
+    </li>
+    <li class="nav-item">
+      <a th:href="@{/admin/school(page=${page+1}, sort=${sort}, nameBy=${nameBy})}"
+         th:text="#{next}"
+         th:class="${totalPages - 1 > page} ? 'btn btn-outline-primary' : 'disabled nav-link'"></a>
+    </li>
+  </ul>
+</footer>
+</body>
+</html>

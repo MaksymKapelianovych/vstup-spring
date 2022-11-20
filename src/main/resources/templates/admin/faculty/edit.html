@@ -11,57 +11,57 @@
     <form class="input-form" th:action="@{/admin/faculty/edit}" method="post" th:object="${faculty}">
         <input type="hidden" th:field="*{id}" th:value="${faculty.id}"/>
         <input type="hidden" th:field="*{requirement.id}" th:value="${faculty.requirement.id}"/>
-        <input type="hidden" th:field="*{requirement.firstSubject.id}" th:value="${faculty.requirement.firstSubject.id}"/>
-        <input type="hidden" th:field="*{requirement.secondSubject.id}" th:value="${faculty.requirement.secondSubject.id}"/>
-        <input type="hidden" th:field="*{requirement.thirdSubject.id}" th:value="${faculty.requirement.thirdSubject.id}"/>
+        <input type="hidden" th:field="*{requirement.first_subject.id}" th:value="${faculty.requirement.first_subject.id}"/>
+        <input type="hidden" th:field="*{requirement.second_subject.id}" th:value="${faculty.requirement.second_subject.id}"/>
+        <input type="hidden" th:field="*{requirement.third_subject.id}" th:value="${faculty.requirement.third_subject.id}"/>
         <div class="input-group">
-            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:field="*{nameEn}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
-            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:field="*{nameUa}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
+            <input class="input form-control" type="text" name="name_en" th:placeholder="#{faculty.name.en}" th:field="*{name_en}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
+            <input class="input form-control" type="text" name="name_ua" th:placeholder="#{faculty.name.ua}" th:field="*{name_ua}" th:value="${faculty.getNameByLocale(#locale.language)}"/>
         </div>
         <div class="input-group">
-            <input class="input form-control" type="text" name="maxBudgetPlace" th:placeholder="#{faculty.max.budget.places}" th:field="*{maxBudgetPlace}" th:value="${faculty.maxBudgetPlace}"/>
-            <input class="input form-control" type="text" name="maxPlace" th:placeholder="#{faculty.max.places}" th:field="*{maxPlace}" th:value="${faculty.maxPlace}"/>
+            <input class="input form-control" type="text" name="max_budget_place" th:placeholder="#{faculty.max.budget.places}" th:field="*{max_budget_place}" th:value="${faculty.max_budget_place}"/>
+            <input class="input form-control" type="text" name="max_place" th:placeholder="#{faculty.max.places}" th:field="*{max_place}" th:value="${faculty.max_place}"/>
         </div>
         <div class="subjects-group">
             <label th:text="#{subject.rate}"></label>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.firstSubject.name" th:field="*{requirement.firstSubject.name}" th:value="${faculty.requirement.firstSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.firstSubject.rate" th:field="*{requirement.firstSubject.rate}" th:value="${faculty.requirement.firstSubject.rate}"/>
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" th:value="${faculty.requirement.first_subject.name.getNameByLocale(#locale.language)}"/>
+                <input type="hidden" name="requirement.first_subject.name" th:field="*{requirement.first_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.first_subject.rate" th:field="*{requirement.first_subject.rate}" th:value="${faculty.requirement.first_subject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.secondSubject.name" th:field="*{requirement.secondSubject.name}" th:value="${faculty.requirement.secondSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.secondSubject.rate" th:field="*{requirement.secondSubject.rate}" th:value="${faculty.requirement.secondSubject.rate}"/>
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" th:value="${faculty.requirement.second_subject.name.getNameByLocale(#locale.language)}"/>
+                <input type="hidden" name="requirement.second_subject.name" th:field="*{requirement.second_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.second_subject.rate" th:field="*{requirement.second_subject.rate}" th:value="${faculty.requirement.second_subject.rate}"/>
             </div>
             <div class="input-group">
-                <input class="input_subject form-control" list="subjectNames" name="requirement.thirdSubject.name" th:field="*{requirement.thirdSubject.name}" th:value="${faculty.requirement.thirdSubject.name}"/>
-                <input class="input form-control" type="number" name="requirement.thirdSubject.rate" th:field="*{requirement.thirdSubject.rate}" th:value="${faculty.requirement.thirdSubject.rate}"/>
+                <!-- Dropdown list for choosing subject -->
+                <input class="select_subject form-control" list="subjectNames" th:value="${faculty.requirement.third_subject.name.getNameByLocale(#locale.language)}"/>
+                <input type="hidden" name="requirement.third_subject.name" th:field="*{requirement.third_subject.name}">
+
+                <input class="input form-control" type="number" name="requirement.third_subject.rate" th:field="*{requirement.third_subject.rate}" th:value="${faculty.requirement.third_subject.rate}"/>
             </div>
             <div>
                 <input type="checkbox" name="active" th:text="#{active}" th:field="*{active}" th:value="${faculty.active}"/>
             </div>
             <div>
                 <datalist id="subjectNames">
-                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.name()}"></option>
+                    <option id="subjectNames_option" th:each="subjectName : ${subjectNames}" th:data-value="${subjectName}" th:text="${subjectName.getNameByLocale(#locale.language)}"></option>
+                    <!--                    <option th:each="subject_name : ${subjectNames}" th:value="${subject_name}" th:text="${subject_name.name()}"></option>-->
                 </datalist>
             </div>
         </div>
         <div class="buttons">
-            <button class="btn btn-outline-primary" type="submit" th:text="#{register.button}"></button>
+            <button class="btn btn-outline-primary" type="submit" onclick="set_selected_values()" th:text="#{register.button}"></button>
             <a class="btn btn-outline-success" th:href="@{/admin/faculty}" th:text="#{back}"></a>
         </div>
     </form>
 </main>
-<script>
-    const inputs = Array.from(document.querySelectorAll(".input_subject"))
-    document.querySelectorAll(".input_subject").forEach((input) => input.addEventListener("change", (event) => {
-        inputs.forEach((i) => {
-            if(input !== i) {
-                if (input.value === i.value) {
-                    input.value = ""
-                }
-            }
-        })
-    }))
-</script>
+<script type="text/javascript" th:src="@{/js/school_list.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/subject_list.js}"></script>-->
 </body>
 </html>

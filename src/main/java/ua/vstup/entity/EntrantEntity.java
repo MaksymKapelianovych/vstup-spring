@@ -37,6 +37,22 @@ public class EntrantEntity {
     @JoinColumn(name = "requirement_id")
     private RequirementEntity requirementEntity;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "certification_id")
+    private DocEntity certificationDocEntity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id")
+    private DocEntity passportDocEntity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private DocEntity photoDocEntity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "assessment_id")
+    private DocEntity assessmentDocEntity;
+
     @Column(name = "active", nullable = false)
     private Boolean active;
 }

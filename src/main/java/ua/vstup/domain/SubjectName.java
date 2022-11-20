@@ -7,23 +7,23 @@ public enum SubjectName {
     HISTORY("History", "Історія"),
     PHYSICS("Physics","Фізика");
 
-    private String nameUa;
-    private String nameEn;
+    private String name_ua;
+    private String name_en;
 
-    SubjectName(String nameEn, String nameUa){
-        this.nameEn = nameEn;
-        this.nameUa = nameUa;
+    SubjectName(String name_en, String name_ua){
+        this.name_en = name_en;
+        this.name_ua = name_ua;
     }
 
     public String getNameByLocale(String locale){
         if(locale == null){
-            return nameEn;
+            return name_en;
         }
         switch (locale){
             case "ua":
-                return nameUa;
+                return name_ua;
             default:
-                return nameEn;
+                return name_en;
         }
     }
 }
